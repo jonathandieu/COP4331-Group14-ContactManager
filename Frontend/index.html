@@ -7,28 +7,26 @@
     <title>Login</title>
     <link href="style.css" rel="stylesheet">
 </head>
-<body class="row">
+<body>
     <div class="container">
-        <div class="column description-container">
-            <div class="description-text">
-                <p>Welcome/project title stuff or whatever.</p>
-            <p style="font-size: medium;">cool tagline about saving contacts or something?? idk</p>
-
+        <div class="title-container">
+            <div class="description">
+                <p style="font-weight: bold; font-size: 3.5vw;">Welcome/project title stuff or whatever.</p>
+                <p style="font-size:1.5vw; margin-top:-2rem;">cool tagline about saving contacts or something?? idk</p>
             </div>
         </div>
 
-        <div class="column">
-            <form id="login" class="login-container">
+        <div class="login-container">
+            <form id="login">
                 <fieldset>
                     <section>
                     <h1>Login</h1>
                         <input type="text" id="username" name="username" placeholder="Username">
-                        <input type="text" id="password" name="password" placeholder="Password">
-                        <button type="submit">Log In</button>
-                        <p style="font-size:small; text-align:center">Not a member? <a href="#">Sign up here.</a></p>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                        <button type="submit" style="font-size: 0.9vw;">Log In</button>
+                        <p>Not a member? <a href="./register.html">Sign up here.</a></p>
                     </section>
-                </fieldset>
-                    
+                </fieldset> 
             </form>
         </div>
     </div>

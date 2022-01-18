@@ -1,87 +1,88 @@
-
 body {
     background-color:#515ba0;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-/* Allows for the content to be separated into two columns */ 
-.column {
-    float:left;
-    width:50%;
-}
-.row:after {
-    content:"";
-    display:table;
-    clear:both;
-}
-
-.login-container {
-    background-color:#d2d5e8;
-    border:none;
-    position: absolute;
-    top: 0;
-    left:50%;
-    width:40%;
-    height:100%;
-}
-
-/* This creates the light background with the shadow box */
+/* The light box with the shadow */
 .container {
-    background-color: #eaebf4;
-	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    height:70%;
+    height: 70%;
     width: 80%;
-    position: absolute;
+    max-width: 80%;
+    background-color: #eaebf4;
+    border-radius: 10px;
+    position:absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    display:flex;
 }
 
-/* The "Login" text */
-h1 {
-    text-align:center;
-    margin:3rem auto;
-    font-size:2rem;
+/* The welcome and tagline */
+.title-container {
+    padding:0 2rem;
+    float:left;
+    width:50%;
+    max-width: 50%;
 }
 
-.description-container {
-    font-size:3rem;
+.description {
     text-align: center;
-    position: absolute;
-    left:9%;
-    width:30%;
-    height:100%;
-}
-
-.description-text {
+    position:absolute;
+    display:flex;
     align-items: center;
-    padding:30% 0;
+    justify-content: center;
+    flex-direction: column;
+    top:0;
+    height:100%;
+    width:50%;
+    max-width:50%;
 }
 
+/* Holds the login form */
+.login-container {
+    float:right;
+    width:38%;
+    background-color:#d2d5e8;
+}
+
+fieldset {
+    border:none;
+}
 
 input {
     display:block;
     border-radius:0.5rem;
-    width:70%;
-    height:2rem;
     margin:0 auto;
-    margin-bottom:0.5rem;
+    margin-bottom:0.6rem;
     border:none;
     outline:none;
+    font-size:1vw;
+    padding:0.3rem;
+}
+
+section {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    height:35vw;
+}
+
+.login-input {
+    width:65%;
+    height:5%;
 }
 
 button {
     display:block;
-    margin:1rem auto;
     background-color:#9ca2cd;
     border:none;
     border-radius:10px;
     color:white;
-    margin-top:10%;
-
-    width:20rem;
-    height:3rem;
+    margin-top:5%;
+    width:60%;
+    height:6%;
 }
 button:hover {
     background-color:#9fa6d4;
@@ -89,14 +90,36 @@ button:hover {
 button:active {
     background-color:#7a7fa5;
 }
-section {
-    margin:auto;
-    position: absolute;
-    top: 10%;
-    left:10%;
-    width:80%;
-    height:100%;
+/* The "Login" text on top of user/pass */
+h1 {
+    font-weight: bold;
+    font-size:2vw;
+    margin-bottom:4rem;
+    margin-top:-3rem;
 }
-fieldset {
-    border:none;
+
+.error {
+    color:rgb(209, 20, 20);
+}
+
+.hidden {
+    display:none;
+}
+
+.change-width {
+    width:40%;
+}
+
+.register-container {
+    width:100%;
+}
+
+.register-input {
+    width:70%;
+    height:7%;
+    margin-bottom:1rem;
+}
+
+.input-error {
+    border: 1px solid red;
 }
