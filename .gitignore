@@ -1,0 +1,4 @@
+# Repeat after me: We do NOT push secrets to GitHub
+
+# AWS Certificates
+*.pem
