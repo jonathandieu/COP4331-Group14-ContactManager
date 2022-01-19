@@ -5,31 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="title-container">
+    <div class="container" id="container">
+        <div class="title-container" id="titleContainer">
             <div class="description">
                 <p style="font-weight: bold; font-size: 3.5vw;">Welcome/project title stuff or whatever.</p>
                 <p style="font-size:1.5vw; margin-top:-2rem;">cool tagline about saving contacts or something?? idk</p>
             </div>
         </div>
 
-        <div class="login-container">
+        <div class="login-container" id="loginContainer">
             <form id="login">
                 <fieldset>
                     <section>
                     <h1>Login</h1>
-                        <input type="text" id="username" name="username" placeholder="Username">
-                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="text" id="username" name="username" placeholder="Username" class="login-input">
+                        <input type="password" id="password" name="password" placeholder="Password" class="login-input">
+                        <p class="message error"></p>
                         <button type="submit" style="font-size: 0.9vw;">Log In</button>
-                        <p>Not a member? <a href="./register.html">Sign up here.</a></p>
+                        <p>Not a member? <a href="#" id="register-link">Sign up here.</a></p>
                     </section>
                 </fieldset> 
             </form>
         </div>
+
+        <div class="register-container hidden" id="registerContainer">
+            <form id="register">
+                <fieldset class="register-fieldset">
+                    <section>
+                    <h1>Sign up</h1>
+                        <input type="text" id="username" name="username" placeholder="Username" class="register-input">
+                        <input type="password" id="password" name="password" placeholder="Password" class="register-input">
+                        <input type="password" id="password" name="password" placeholder="Confirm Password" class="register-input">
+                        <p class="message error"></p>
+                        <button type="submit" style="font-size: 0.9vw;">Sign me up</button>
+                        <p>Already have an account? <a href="#" id="login-link">Log in here.</a></p>
+                    </section>
+                </fieldset> 
+            </form>
+        </div>
+
     </div>
+
     
 </body>
+<script src="./main.js"></script>
 </html>
