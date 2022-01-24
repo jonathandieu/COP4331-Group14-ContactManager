@@ -3,11 +3,11 @@
 
 	$inData = getRequestInfo();
 	
-	$id = 0;
+	$id = 50;
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "Admin", "Admin", "ContactManage"); 	
+	$conn = new mysqli("localhost", "Admin", "Admin", "ContactManager"); 	
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -15,7 +15,7 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->bind_param("ss", $inData["Login"], $inData["Password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
@@ -25,7 +25,6 @@
 		}
 		else
 		{
-			//Incorrect username or password
 			returnWithError("No Records Found");
 		}
 
