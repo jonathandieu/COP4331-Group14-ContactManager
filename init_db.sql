@@ -20,7 +20,7 @@ CREATE TABLE contacts (
 CREATE TABLE emails (
     login VARCHAR(64) NOT NULL DEFAULT '',
     name VARCHAR(255) NOT NULL DEFAULT '',
-    type VARCHAR(64) NOT NULL DEFAULT 'Home',
+    type VARCHAR(64) NOT NULL DEFAULT 'home',
     address VARCHAR(255) NOT NULL DEFAULT '',
     FOREIGN KEY (login, name) REFERENCES contacts (login, name)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -30,7 +30,7 @@ CREATE TABLE emails (
 CREATE TABLE phones (
     login VARCHAR(64) NOT NULL DEFAULT '',
     name VARCHAR(255) NOT NULL DEFAULT '',
-    type VARCHAR(64) NOT NULL DEFAULT 'Home',
+    type VARCHAR(64) NOT NULL DEFAULT 'home',
     number INT(10) NOT NULL DEFAULT 0,
     FOREIGN KEY (login, name) REFERENCES contacts (login, name)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -40,7 +40,7 @@ CREATE TABLE phones (
 CREATE TABLE locations (
     login VARCHAR(64) NOT NULL DEFAULT '',
     name VARCHAR(255) NOT NULL DEFAULT '',
-    type VARCHAR(64) NOT NULL DEFAULT 'Home',
+    type VARCHAR(64) NOT NULL DEFAULT 'home',
     address VARCHAR(255) NOT NULL DEFAULT '',
     FOREIGN KEY (login, name) REFERENCES contacts (login, name)
 		ON DELETE CASCADE ON UPDATE CASCADE,
