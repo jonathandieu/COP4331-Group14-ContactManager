@@ -6,6 +6,9 @@ USE yellabook;
 CREATE TABLE users (
     login VARCHAR(64) NOT NULL DEFAULT '',
     password VARCHAR(64) NOT NULL DEFAULT '',
+    first_name VARCHAR(64) NOT NULL DEFAULT '',
+    last_name VARCHAR(64) NOT NULL DEFAULT '',
+
     PRIMARY KEY (login)
 );
 
