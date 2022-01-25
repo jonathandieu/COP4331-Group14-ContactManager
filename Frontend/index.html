@@ -26,10 +26,12 @@
                                 class="form-control mt-2 mb-3">
                             <input type="password" id="password" name="password" placeholder="Password"
                                 class="form-control mt-2">
-                            <p class="message error"></p>
-                            <button type="submit" class="btn btn-warning w-100 mt-4">Log In</button>
+                            <p class="message error" id="errorMessage"></p>
+                            <button type="button" class="btn btn-warning w-100 mt-4" onclick="handleLogin();">Log
+                                In</button>
 
-                            <p id="register-link" class="text-color mt-2">Not a member? <a href="./register.html">Sign up here.</a></p>
+                            <p id="register-link" class="text-color mt-2">Not a member? <a href="./register.html">Sign
+                                    up here.</a></p>
                         </div>
                     </form>
                 </div>
