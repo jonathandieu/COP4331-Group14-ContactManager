@@ -11,6 +11,7 @@
     <script src="./main.js"></script>
     <title>Home</title>
 </head>
+
 <body class="vh-100 vw-100 d-flex flex-column">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-altdark">
@@ -20,31 +21,36 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
     
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Setting stuff here prob</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Example</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Username</a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Logout</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container-fluid bg-primary h-100">
+    <div class="container-fluid h-100">
         <div class="row h-100">
         
-            <div class="col-md-3 bg-altmid overflow-auto p-0">
+            <div class="col-md-3 bg-altmid p-0">
                 <!--Container for the search and add, which also have their own containers-->
                 <div class="container-fluid bg-warning p-0">
-                    <div class="container-fluid">
-                        search bar here
+                    <div class="container-fluid form-outline py-3">
+                        <input type="search" id="form1" class="form-control shadow-none" placeholder="Search..." aria-label="Search"/>
                     </div>
-                    <div class="container-fluid">
-                        add contact button
+
+                    <div class="container-fluid p-0">
+                        <button type="button" class="btn btn-lg btn-block btn-warning shadow-none w-100 text-muted">+Add Contact</button>
                     </div>
                 </div>
-                list contacts
+
+                <div class="container-fluid">
+                    list contacts
+                </div>
+                
             </div>
 
             <div class="col bg-light">
