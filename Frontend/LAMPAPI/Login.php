@@ -16,14 +16,14 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT login,first_name,lastName FROM Users WHERE login=? AND password =?"); // Call the prepare() method
+		$stmt = $conn->prepare("SELECT login, name FROM Users WHERE login=? AND password =?"); // Call the prepare() method
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]); // "ss" means that $inData is bound as a string
 		$stmt->execute(); // Executes the SQL statement
 		$result = $stmt->get_result();
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['login'] );
+			returnWithInfo( $row['name'], $row['login'] );
 		}
 		else
 		{
@@ -51,9 +51,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $firstName, $lastName, $login )
+	function returnWithInfo( $name, $login )
 	{
-		$retValue = '{"login":' . $login . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}'; // Returns info with no error.
+		$retValue = '{"login":' . $login . ',"name":"' . $name . '","error":""}'; // Returns info with no error.
 		sendResultInfoAsJson( $retValue );
 	}
 
