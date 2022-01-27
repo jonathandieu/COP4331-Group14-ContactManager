@@ -17,7 +17,8 @@ CREATE TABLE contacts (
     name VARCHAR(255) NOT NULL DEFAULT '',
     FOREIGN KEY (login) REFERENCES users (login)
 		ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (login, name)
+    PRIMARY KEY (login, name),
+    UNIQUE KEY (id)
 );
 
 CREATE TABLE emails (
