@@ -3,9 +3,10 @@
 @import "../scss/_variables";
 
 $custom-theme-colors: (
-    "altdark": #fecb6b,
-    "altlight": #fcf0dd,
-    "altmid": #fdedce,
+    "mangodark": #fecb6b,
+    "mangolight": #fcf0dd,
+    "mangomid": #fdedce,
+    "darkyellow": #ebbd67,
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
