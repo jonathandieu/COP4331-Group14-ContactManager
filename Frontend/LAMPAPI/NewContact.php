@@ -36,7 +36,7 @@
         }
 
         // Phones
-        $stmt = $conn->prepare("INSERT into phones (login,name,type,address) VALUES(?,?,?,?)");
+        $stmt = $conn->prepare("INSERT into phones (login,name,type,number) VALUES(?,?,?,?)");
         $stmt->bind_param("ssss", $login, $cname, $ptype, $paddress);
 	    $stmt->execute();
 	    $stmt->close();
