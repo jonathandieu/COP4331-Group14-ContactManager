@@ -30,6 +30,7 @@
 		// Emails
         if (empty($eaddress))
         {
+            echo 1;
             if (empty($etype))
                 $etype = "home";
             $stmt = $conn->prepare("INSERT into emails (login,ename,type,address) VALUES(?,?,?,?)");
