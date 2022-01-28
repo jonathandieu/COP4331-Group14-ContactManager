@@ -3,7 +3,8 @@
 
 	$inData = getRequestInfo();
 
-	$name = "";
+
+	
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if( $conn->connect_error )
@@ -19,7 +20,7 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['name']);
+			returnWithInfo( $row['name'], $row['login']);
 		}
 		else
 		{
@@ -47,9 +48,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $name )
+	function returnWithInfo( $name, $login )
 	{
-		$retValue = {"name":' . $name . ',"error":""}';
+		$retValue = '{"name":"' . $name . ',"login":"' . $login . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

@@ -5,7 +5,6 @@
     $password = $inData["password"];
 	$name = $inData["name"];
 
-
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if ($conn->connect_error)
 	{
