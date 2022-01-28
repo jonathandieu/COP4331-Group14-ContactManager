@@ -28,7 +28,7 @@
         // Big Brain Shit
 		
 		// Emails
-        if (empty($eaddress))
+        if (TRUE)
         {
             echo 1;
             if (empty($etype))
