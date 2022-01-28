@@ -27,7 +27,7 @@
         // Big Brain Shit
 		
 		// Emails
-        if (TRUE)
+        if (strcmp($eaddress,"") != 0)
         {
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
