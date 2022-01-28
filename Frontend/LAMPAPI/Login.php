@@ -1,6 +1,5 @@
 
 <?php
-	echo 1;
 
 	$inData = getRequestInfo();
 
@@ -44,13 +43,12 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"name":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
 	function returnWithInfo( $name )
 	{
-		echo "we made it to line 53!";
 		$retValue = '{"name":' . $name . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
