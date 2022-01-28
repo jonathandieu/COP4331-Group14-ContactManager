@@ -34,6 +34,24 @@
 	    	$stmt->execute();
 	    	
         }
+
+		// Phones
+		if (strcmp($paddress,"") != 0)
+        {
+            $stmt = $conn->prepare("INSERT into phones (login,name,type,address) VALUES(?,?,?,?)");
+            $stmt->bind_param("ssss", $login, $cname, $ptype, $paddress);
+	    	$stmt->execute();
+	    	
+        }
+
+		// Locations
+		if (strcmp($laddress,"") != 0)
+        {
+            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+            $stmt->bind_param("ssss", $login, $cname, $ltype, $laddress);
+	    	$stmt->execute();
+	    	
+        }
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
