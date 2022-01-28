@@ -27,10 +27,8 @@
         // Big Brain Shit
 		
 		// Emails
-        if (empty($eaddress))
+        if (TRUE)
         {
-            if (empty($etype))
-                $etype = "home";
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
 	    	$stmt->execute();
