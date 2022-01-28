@@ -3,9 +3,8 @@
 
 	$inData = getRequestInfo();
 
-	$id = 50;
-	$firstName = "";
-	$lastName = "";
+	$name = "";
+	$password = "";
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook"); // Instantiate mysqli object named $conn
 
@@ -47,7 +46,7 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}'; // Returns only the error with everything else empty
+		$retValue = '{"id":0,"name":"","error":"' . $err . '"}'; // Returns only the error with everything else empty
 		sendResultInfoAsJson( $retValue );
 	}
 
