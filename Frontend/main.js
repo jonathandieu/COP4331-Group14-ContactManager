@@ -16,3 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+function showAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.remove("d-none");
+}
+
+function hideAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.add("d-none");
+}
