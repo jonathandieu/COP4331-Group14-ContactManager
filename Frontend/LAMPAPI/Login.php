@@ -15,7 +15,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT login, name FROM Users WHERE login=? AND password =?"); // Call the prepare() method
+		$stmt = $conn->prepare("SELECT login, name FROM Users WHERE login=? AND password =?" Values (?,?)); // Call the prepare() method
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]); // "ss" means that $inData is bound as a string
 		$stmt->execute(); // Executes the SQL statement
 		$result = $stmt->get_result();
