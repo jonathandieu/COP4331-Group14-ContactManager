@@ -4,14 +4,14 @@
 	$login = $inData["login"];
 	$cname = $inData["cname"];
 
-    $etype = $inData["type"];
-    $eadress = $inData["adress"];
+    $etype = $inData["etype"];
+    $eaddress = $inData["eaddress"];
 
-    $ptype = $inData["type"];
-    $paddress = $inData["address"];
+    $ptype = $inData["ptype"];
+    $paddress = $inData["paddress"];
 
-    $ltype = $inData["type"];
-    $ladress = $inData["adress"];
+    $ltype = $inData["ltype"];
+    $laddress = $inData["laddress"];
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if ($conn->connect_error)
@@ -26,7 +26,31 @@
 		$stmt->close();
 
         // Big Brain Shit
-
+		
+		// Emails
+        if ($eaddress != "")
+        {
+            if ($etype == "")
+                $etype = "home";
+            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+            $stmt->bind_param("ssss", $login, $cname, );
+	    	$stmt->execute();
+	    	$stmt->close();
+        }
+		
+		$conn->close();
+		returnWithError("");
+		
+		// Phones
+        if ($eaddress != "")
+        {
+            if ($etype == "")
+                $etype = "home";
+            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+            $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
+	    	$stmt->execute();
+	    	$stmt->close();
+        }
 		
 		$conn->close();
 		returnWithError("");
