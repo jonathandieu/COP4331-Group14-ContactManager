@@ -1,16 +1,16 @@
 <?php
 	$inData = getRequestInfo();
-	
+
     $Login = $inData["Login"];
     $Password = $inData["Password"];
 	$Firstname = $inData["Firstname"];
 	$Lastname = $inData["Lastname"];
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "ContactManager");
-	if ($conn->connect_error) 
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Users (Firstname, Lastname, Login, Password) VALUES(?,?,?,?)");
@@ -31,11 +31,11 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>
