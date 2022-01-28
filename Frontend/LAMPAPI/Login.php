@@ -47,7 +47,7 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo( $name )
 	{
 		$retValue = '{"name":' . $name . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
