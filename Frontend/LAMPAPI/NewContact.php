@@ -34,9 +34,9 @@
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
 	    	$stmt->execute();
-	    	$stmt->close();
+	    	
         }
-		
+		$stmt->close();
 		$conn->close();
 		returnWithError("");
 	}
