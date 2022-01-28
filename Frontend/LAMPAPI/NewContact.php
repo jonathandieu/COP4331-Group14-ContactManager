@@ -30,10 +30,7 @@
 		// Emails
         if (TRUE)
         {
-            echo 1;
-            if (empty($etype))
-                $etype = "home";
-            $stmt = $conn->prepare("INSERT into emails (login,ename,type,address) VALUES(?,?,?,?)");
+            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
 	    	$stmt->execute();
 	    	$stmt->close();
