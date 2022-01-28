@@ -1,6 +1,7 @@
 
 <?php
-
+	echo 1;
+	
 	$inData = getRequestInfo();
 
 	$name = "";
