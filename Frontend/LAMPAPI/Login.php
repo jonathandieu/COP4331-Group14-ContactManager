@@ -13,7 +13,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT name FROM Users WHERE login=? AND password =?");
+		$stmt = $conn->prepare("SELECT name FROM users WHERE login=? AND password =?");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
