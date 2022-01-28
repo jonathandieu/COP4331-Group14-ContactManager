@@ -1,14 +1,12 @@
 const urlBase = 'http://yellabook.me/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
-let firstName = "";
-let lastName = "";
+let name = "";
+let username = "";
 
 function handleLogin() {
-    userId = 0;
-    firstName = "";
-    lastName = "";
+    name = "";
+    username = "";
 
     let login = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -41,8 +39,8 @@ function handleLogin() {
 					return;
 				}
 		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+				name = jsonObject.name;
+				username = jsonObject.login;
 
 				saveCookie();
 	
@@ -61,7 +59,7 @@ function saveCookie() {
 	let minutes = 60;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();    
+	document.cookie = "name=" + name + ",username=" + username + ";expires=" + date.toGMTString();    
 }
 
 function setMessage(formElement, message) {
