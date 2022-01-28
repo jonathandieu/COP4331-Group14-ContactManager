@@ -35,6 +35,15 @@
 	    	$stmt->close();
         }
 
+        // Phones
+        if (strcmp($paddress,"") != 0)
+        {
+            $stmt = $conn->prepare("INSERT into phones (login,name,type,address) VALUES(?,?,?,?)");
+            $stmt->bind_param("ssss", $login, $cname, $ptype, $paddress);
+	    	$stmt->execute();
+	    	$stmt->close();
+        }
+
 		
 		$conn->close();
 		returnWithError("");
