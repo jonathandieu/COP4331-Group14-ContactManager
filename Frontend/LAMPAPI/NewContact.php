@@ -20,7 +20,11 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into contacts (login,name) VALUES(?,?)");
+		$stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+        $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
+	    $stmt->execute();
+        
+        $stmt = $conn->prepare("INSERT into contacts (login,name) VALUES(?,?)");
 		$stmt->bind_param("ss", $login, $cname);
 		$stmt->execute();
 
@@ -28,9 +32,7 @@
 		
 		// Emails
 
-        $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
-        $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
-	    $stmt->execute();
+        
 	    	
     
 
