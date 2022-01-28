@@ -23,18 +23,18 @@
 		$stmt = $conn->prepare("INSERT into contacts (login,name) VALUES(?,?)");
 		$stmt->bind_param("ss", $login, $cname);
 		$stmt->execute();
-
+        $stmt->clear();
         // Big Brain Shit
 		
 		// Emails
-        if (TRUE)
-        {
-            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
-            $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
-	    	$stmt->execute();
-	    	$stmt->close();
-        }
-		
+
+        $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+        $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
+	    $stmt->execute();
+	    	
+    
+
+		$stmt->close();
 		$conn->close();
 		returnWithError("");
 	}
