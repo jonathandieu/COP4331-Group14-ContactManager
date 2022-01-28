@@ -1,6 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-
+	$ret = "";
 	$login = $inData["login"];
 	$cname = $inData["cname"];
 
@@ -24,13 +24,15 @@
 		$stmt->bind_param("ss", $login, $cname);
 		$stmt->execute();
         $stmt->close();
-        // Big Brain Shit
+      
 		
 		// Emails
+		//length
         if (strcmp($eaddress,"") != 0)
         {
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
+			$ret = $eaddress;
 	    	$stmt->execute();
 	    	$stmt->close();
         }
@@ -54,7 +56,7 @@
         }
         
 		$conn->close();
-		returnWithError("");
+		returnWithError($ret);
 	}
 
 	function getRequestInfo()
