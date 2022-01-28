@@ -1,20 +1,20 @@
 <?php
 	$inData = getRequestInfo();
 
-    $Login = $inData["Login"];
-    $Password = $inData["Password"];
-	$Firstname = $inData["Firstname"];
-	$Lastname = $inData["Lastname"];
+    $login = $inData["login"];
+    $password = $inData["password"];
+	$name = $inData["name"];
 
-	$conn = new mysqli("localhost", "Admin", "Admin", "ContactManager");
+
+	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (Firstname, Lastname, Login, Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $Firstname, $Lastname, $Login, $Password);
+		$stmt = $conn->prepare("INSERT into Users (name, login, password) VALUES(?,?,?)");
+		$stmt->bind_param("sss", $name, $login, $password);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
