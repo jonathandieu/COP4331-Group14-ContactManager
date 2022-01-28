@@ -32,9 +32,9 @@
         {
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
-			$ret = $eaddress;
 	    	$stmt->execute();
 	    	$stmt->close();
+			$ret = $eaddress;
         }
 		
     	// Phones
