@@ -12,7 +12,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (name, login, password) VALUES(?,?,?)");
+		$stmt = $conn->prepare("INSERT into users (name, login, password) VALUES(?,?,?)");
 		$stmt->bind_param("sss", $name, $login, $password);
 		$stmt->execute();
 		$stmt->close();
