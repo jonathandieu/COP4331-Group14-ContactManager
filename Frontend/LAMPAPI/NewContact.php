@@ -28,23 +28,9 @@
         // Big Brain Shit
 		
 		// Emails
-        if ($eaddress != "")
+        if (empty($eaddress))
         {
-            if ($etype == "")
-                $etype = "home";
-            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
-            $stmt->bind_param("ssss", $login, $cname, );
-	    	$stmt->execute();
-	    	$stmt->close();
-        }
-		
-		$conn->close();
-		returnWithError("");
-		
-		// Phones
-        if ($eaddress != "")
-        {
-            if ($etype == "")
+            if (empty($etype))
                 $etype = "home";
             $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
