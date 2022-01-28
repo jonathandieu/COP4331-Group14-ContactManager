@@ -1,7 +1,7 @@
 
 <?php
 	echo 1;
-	
+
 	$inData = getRequestInfo();
 
 	$name = "";
@@ -50,6 +50,7 @@
 
 	function returnWithInfo( $name )
 	{
+		echo "we made it to line 53!";
 		$retValue = '{"name":' . $name . ',"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
