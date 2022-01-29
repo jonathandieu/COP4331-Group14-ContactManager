@@ -109,9 +109,11 @@ function handleRegister() {
 				fullName = jsonObject.name;
 				username = jsonObject.login;
 
+				console.log({ fullName, username });
+
 				saveCookie();
 
-				window.location.href = "dashboard.html";
+				// window.location.href = "dashboard.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -125,7 +127,7 @@ function saveCookie() {
 	let date = new Date();
 	date.setTime(date.getTime() + minutes * 60 * 1000);
 	document.cookie =
-		"name=" +
+		"fullName=" +
 		fullName +
 		",login=" +
 		username +
