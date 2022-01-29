@@ -56,7 +56,7 @@ function handleRegister() {
 
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
-	const login = document.getElementById("username").value.trim();
+	const login = document.getElementById("username").value.trim().toLowerCase();
 	const password = document.getElementById("password").value.trim();
 	const confirmPassword = document
 		.getElementById("confirmPassword")
@@ -131,6 +131,7 @@ function saveCookie() {
 		username +
 		";expires=" +
 		date.toGMTString();
+	console.log(document.cookie);
 }
 
 function setMessage(formElement, message) {
