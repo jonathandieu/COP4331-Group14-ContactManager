@@ -28,9 +28,11 @@
 		
 		// Emails
 		//length
-        if (strcmp($eaddress,"") != 0)
+        if (strlen($eaddress) > 0)
         {
-            $stmt = $conn->prepare("INSERT into emails (login,name,type,address) VALUES(?,?,?,?)");
+			if (strcmp($etype,"") == 0)
+				$etype = "Home";
+            $stmt = $conn->prepare("INSERT into emails (login,cname,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $etype, $eaddress);
 	    	$stmt->execute();
 	    	$stmt->close();
@@ -38,25 +40,29 @@
         }
 		
     	// Phones
-        if (strcmp($paddress,"") != 0)
+        if (strlen($paddress) > 0)
         {
-            $stmt = $conn->prepare("INSERT into phones (login,name,type,number) VALUES(?,?,?,?)");
+			if (strcmp($ptype,"") == 0)
+				$etype = "Home";
+            $stmt = $conn->prepare("INSERT into phones (login,cname,type,number) VALUES(?,?,?,?)");
             $stmt->bind_param("sssi", $login, $cname, $ptype, $paddress);
 	        $stmt->execute();
 	        $stmt->close();
         }
 		
         // Locations
-        if (strcmp($laddress,"") != 0)
+        if (strlen($laddress) > 0)
         {
-            $stmt = $conn->prepare("INSERT into locations (login,name,type,address) VALUES(?,?,?,?)");
+			if (strcmp($ltype,"") == 0)
+			$etype = "Home";
+            $stmt = $conn->prepare("INSERT into locations (login,cname,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $ltype, $laddress);
 	    	$stmt->execute();
 	    	$stmt->close();
         }
         
 		$conn->close();
-		returnWithError($ret);
+		returnWithError($stmt);
 	}
 
 	function getRequestInfo()

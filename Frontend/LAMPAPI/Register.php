@@ -16,9 +16,35 @@
 		$stmt->bind_param("sss", $name, $login, $password);
 		$stmt->execute();
 		$stmt->close();
+
+
+
+
+		$stmt = $conn->prepare("SELECT name,login FROM users WHERE login=? AND password =?");
+		$stmt->bind_param("ss", $login, $password);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithInfo( $row['name'], $row['login']);
+		}
+		else
+		{
+			returnWithError("No Records Found");
+		}
+
+		$stmt->close();
 		$conn->close();
-		returnWithError("");
+
 	}
+
+	function returnWithInfo( $name, $login )
+	{
+		$retValue = '{"name":"' . $name . '","login":"' . $login . '","error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
+
 
 	function getRequestInfo()
 	{
