@@ -17,7 +17,7 @@
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
+		//returnWithError("");
 
 
 		$stmt = $conn->prepare("SELECT name,login FROM users WHERE login=? AND password =?");
@@ -36,7 +36,7 @@
 
 		$stmt->close();
 		$conn->close();
-		
+
 	}
 
 	function getRequestInfo()
