@@ -41,7 +41,7 @@ function handleLogin() {
 
 				saveCookie();
 
-				window.location.href = "dashboard.html";
+				// window.location.href = "dashboard.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -51,8 +51,8 @@ function handleLogin() {
 }
 
 function handleRegister() {
-	let fullName = "";
-	let username = "";
+	fullName = "";
+	username = "";
 
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
