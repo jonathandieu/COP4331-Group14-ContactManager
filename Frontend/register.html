@@ -29,8 +29,9 @@
                 </div>
                     <input type="text" id="username" name="username" class="form-control mt-2 mb-2" placeholder="Enter Username">
                     <input type="password" id="password" name="password" class="form-control mt-2 mb-2" placeholder="Enter Password">
-                    <input type="password" id="password" name="password" class="form-control mt-2 mb-2" placeholder="Confirm Password">
-                <button type="submit" class="btn btn-warning mt-5" type="submit">Register</button>
+                    <input type="password" id="confirmPassword" name="password" class="form-control mt-2 mb-2" placeholder="Confirm Password">
+                    <p id="errorMessage"></p>
+                <button class="btn btn-warning mt-5" type="button" onclick="handleRegister();">Register</button>
                 <p>Already have an account? <a href="./index.html">Log in here.</a></p>
             </form>
     </div>
