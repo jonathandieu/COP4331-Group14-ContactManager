@@ -1,11 +1,11 @@
 const urlBase = "http://yellabook.me/LAMPAPI";
 const extension = "php";
 
-let name = "";
+let fullName = "";
 let username = "";
 
 function handleLogin() {
-	name = "";
+	fullName = "";
 	username = "";
 
 	let login = document.getElementById("username").value;
@@ -28,15 +28,15 @@ function handleLogin() {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
-				userId = jsonObject.id;
+				error = jsonObject.error;
 
-				if (userId < 1) {
+				if (error != "") {
 					document.getElementById("errorMessage").innerHTML =
 						"User/Password combination incorrect";
 					return;
 				}
 
-				name = jsonObject.name;
+				fullName = jsonObject.name;
 				username = jsonObject.login;
 
 				saveCookie();
@@ -55,7 +55,12 @@ function saveCookie() {
 	let date = new Date();
 	date.setTime(date.getTime() + minutes * 60 * 1000);
 	document.cookie =
-		"name=" + name + ",username=" + username + ";expires=" + date.toGMTString();
+		"name=" +
+		fullName +
+		",username=" +
+		username +
+		";expires=" +
+		date.toGMTString();
 }
 
 function setMessage(formElement, message) {
