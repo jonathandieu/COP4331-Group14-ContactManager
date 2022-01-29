@@ -62,7 +62,7 @@
         }
         
 		$conn->close();
-		returnWithError($stmt);
+		returnWithError("");
 	}
 
 	function getRequestInfo()
