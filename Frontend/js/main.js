@@ -129,7 +129,7 @@ function saveCookie() {
 	document.cookie =
 		"fullName=" +
 		fullName +
-		",login=" +
+		";login=" +
 		username +
 		";expires=" +
 		date.toGMTString();
