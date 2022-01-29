@@ -67,7 +67,7 @@ function handleRegister() {
 	if (
 		firstName === "" ||
 		lastName === "" ||
-		username === "" ||
+		login === "" ||
 		password === "" ||
 		confirmPassword === ""
 	) {
