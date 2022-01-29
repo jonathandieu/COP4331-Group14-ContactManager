@@ -41,7 +41,7 @@ function handleLogin() {
 
 				saveCookie();
 
-				// window.location.href = "dashboard.html";
+				window.location.href = "dashboard.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -61,8 +61,6 @@ function handleRegister() {
 	const confirmPassword = document
 		.getElementById("confirmPassword")
 		.value.trim();
-
-	console.log({ firstName, lastName, login, password, confirmPassword });
 
 	if (
 		firstName === "" ||
@@ -109,11 +107,9 @@ function handleRegister() {
 				fullName = jsonObject.name;
 				username = jsonObject.login;
 
-				console.log({ fullName, username });
-
 				saveCookie();
 
-				// window.location.href = "dashboard.html";
+				window.location.href = "dashboard.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -127,10 +123,7 @@ function saveCookie() {
 	let date = new Date();
 	date.setTime(date.getTime() + minutes * 60 * 1000);
 	document.cookie = "fullName=" + fullName + ";expires=" + date.toGMTString();
-
 	document.cookie = "login=" + username + ";expires=" + date.toGMTString();
-
-	console.log(document.cookie);
 }
 
 function setMessage(formElement, message) {
