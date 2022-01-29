@@ -62,6 +62,8 @@ function handleRegister() {
 		.getElementById("confirmPassword")
 		.value.trim();
 
+	console.log({ firstName, lastName, login, password, confirmPassword });
+
 	if (
 		firstName === "" ||
 		lastName === "" ||
