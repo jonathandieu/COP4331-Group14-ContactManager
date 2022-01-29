@@ -17,6 +17,7 @@
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
+		echo $stmt;
 		returnWithInfo( $name, $login);
 		returnWithError("");
 
