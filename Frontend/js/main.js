@@ -126,13 +126,12 @@ function saveCookie() {
 	let minutes = 60;
 	let date = new Date();
 	date.setTime(date.getTime() + minutes * 60 * 1000);
-	document.cookie =
-		"fullName=" +
-		fullName +
-		";login=" +
-		username +
-		";expires=" +
-		date.toGMTString();
+	document.cookie = "fullName=" + fullName;
+	";expires=" + date.toGMTString();
+
+	document.cookie = "login=" + username;
+	";expires=" + date.toGMTString();
+
 	console.log(document.cookie);
 }
 
