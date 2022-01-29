@@ -20,7 +20,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into contacts (login,name) VALUES(?,?)");
+		$stmt = $conn->prepare("INSERT into contacts (login,cname) VALUES(?,?)");
 		$stmt->bind_param("ss", $login, $cname);
 		$stmt->execute();
         $stmt->close();
