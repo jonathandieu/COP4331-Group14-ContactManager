@@ -18,6 +18,25 @@
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
+
+
+		$stmt = $conn->prepare("SELECT name,login FROM users WHERE login=? AND password =?");
+		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithInfo( $row['name'], $row['login']);
+		}
+		else
+		{
+			returnWithError("No Records Found");
+		}
+
+		$stmt->close();
+		$conn->close();
+		
 	}
 
 	function getRequestInfo()
