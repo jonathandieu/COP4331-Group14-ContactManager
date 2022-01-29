@@ -16,7 +16,7 @@
 		$stmt->bind_param("sss", $name, $login, $password);
 		$stmt->execute();
 		$stmt->close();
-		$conn->close();
+		//$conn->close();
 		//returnWithError("");
 
 
