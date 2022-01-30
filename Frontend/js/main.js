@@ -136,6 +136,7 @@ function readCookie() {
 	for (let i = 0; i < splits.length; i++) {
 		const pair = splits[i].trim();
 		const values = pair.split("=");
+		console.log(values);
 		if (values[0] == "fullName") {
 			fullName = values[1];
 		} else if (values[0] == "login") {
