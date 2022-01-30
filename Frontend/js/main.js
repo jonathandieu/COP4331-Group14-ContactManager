@@ -81,18 +81,11 @@ function handleRegister() {
 		return;
 	}
 
-	if (password !== confirmPassword) {
+	if ((password !== confirmPassword) || password.length < 8) {
 		document.getElementById("errorMessage").innerHTML =
-			"Passwords do not match";
+			"Passwords do not match and must be at least 8 characters";
 		//FIXME
 
-		return;
-	}
-
-	if (password.length < 8) {
-		document.getElementById("errorMessage").innerHTML =
-			"Passwords must be 8 characters";
-		//FIXME
 		return;
 	}
 
