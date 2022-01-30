@@ -132,7 +132,7 @@ function readCookie() {
 
 	const cookie = document.cookie;
 	console.log(cookie);
-	const splits = cookie.split(",");
+	const splits = cookie.split(";");
 	
 	for (let i = 0; i < splits.length; i++) {
 		const pair = splits[i].trim();
