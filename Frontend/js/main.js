@@ -53,7 +53,10 @@ function handleLogin() {
 function handleRegister() {
 	fullName = "";
 	username = "";
+	var i = 0;
 
+	const form = document.getElementById("registerForm");
+	const invalidSymbols = /[@#$%()\\/]/;
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
 	const login = document.getElementById("username").value.trim().toLowerCase();
@@ -69,14 +72,34 @@ function handleRegister() {
 		password === "" ||
 		confirmPassword === ""
 	) {
-		document.getElementById("errorMessage").innerHTML =
-			"One or more fields are empty";
+		form.classList.add("was-validated");
+		const empty = form.getElementsByClassName("emptyField");
+		for (i = 0; i < empty.length; i++) {
+			empty[i].classList.remove("d-none");
+		}
+
 		return;
 	}
 
 	if (password !== confirmPassword) {
 		document.getElementById("errorMessage").innerHTML =
 			"Passwords do not match";
+		//FIXME
+
+		return;
+	}
+
+	if (password.length < 8) {
+		document.getElementById("errorMessage").innerHTML =
+			"Passwords must be 8 characters";
+		//FIXME
+		return;
+	}
+
+	if (invalidSymbols.test(login) || login.length < 5) {
+		document.getElementById("errorMessage").innerHTML =
+			"Usernames must be at least 5 characters and cannot contain the following symbols: %, [], (), \, /, @, $, or #";
+		//FIXME
 		return;
 	}
 
