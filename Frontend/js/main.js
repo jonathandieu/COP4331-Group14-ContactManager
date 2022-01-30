@@ -126,6 +126,28 @@ function saveCookie() {
 	document.cookie = "login=" + username + ";expires=" + date.toGMTString();
 }
 
+function readCookie() {
+	fullName = "";
+	username = "";
+
+	const cookie = document.cookie;
+	const splits = cookie.split(",");
+	
+	for (let i = 0; i < splits.length; i++) {
+		const pair = splits[i].trim();
+		const values = pair.split("=");
+		if (values[0] == "fullName") {
+			fullName = values[1];
+		} else if (values[0] == "login") {
+			username = values[1];
+		}
+	}
+
+	if (fullName === "" || username == "") {
+		window.location.href = "index.html";
+	}
+}
+
 function setMessage(formElement, message) {
 	const messageElement = formElement.querySelector(".message");
 
