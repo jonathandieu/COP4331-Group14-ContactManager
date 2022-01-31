@@ -50,13 +50,45 @@ function handleLogin() {
 	}
 }
 
+function validateForm (form, invalidSymbols, firstName, lastName, login, password, confirmPassword) {
+	if (firstName === "") {
+		form.classList.add("was-validated");
+		document.getElementById("invalidfName").innerHTML = "This field is required";
+	}
+	if (lastName === "") {
+		form.classList.add("was-validated");
+		document.getElementById("invalidlName").innerHTML = "This field is required";
+	}
+	if (login.length < 5) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
+	}
+	
+	if (invalidSymbols.test(login)) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidUser").innerHTML = "Username cannot contain the following symbols: %, [], (), \, /, @, $, or #";
+		//FIXME: Symbols aren't accounted for after the length check becomes valid
+	}
+	
+	if (password.length < 8) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
+	}
+	if (password !== confirmPassword || confirmPassword === "") {
+		form.classList.add("was-validated");
+		document.getElementById("invalidMatch").classList.add("is-invalid");
+		document.getElementById("invalidMatch").innerHTML = "Password must match";
+		//FIXME: input line is still green even if passwords don't match
+	}
+}
+
 function handleRegister() {
 	fullName = "";
 	username = "";
 	var i = 0;
 
 	const form = document.getElementById("registerForm");
-	const invalidSymbols = /[@#$%()\\/]/;
+	const invalidSymbols = (/[@#$%()\\[\]\\\/]/);
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
 	const login = document.getElementById("username").value.trim().toLowerCase();
@@ -65,36 +97,7 @@ function handleRegister() {
 		.getElementById("confirmPassword")
 		.value.trim();
 
-	if (
-		firstName === "" ||
-		lastName === "" ||
-		login === "" ||
-		password === "" ||
-		confirmPassword === ""
-	) {
-		form.classList.add("was-validated");
-		const empty = form.getElementsByClassName("emptyField");
-		for (i = 0; i < empty.length; i++) {
-			empty[i].classList.remove("d-none");
-		}
-
-		return;
-	}
-
-	if ((password !== confirmPassword) || password.length < 8) {
-		document.getElementById("errorMessage").innerHTML =
-			"Passwords do not match and must be at least 8 characters";
-		//FIXME
-
-		return;
-	}
-
-	if (invalidSymbols.test(login) || login.length < 5) {
-		document.getElementById("errorMessage").innerHTML =
-			"Usernames must be at least 5 characters and cannot contain the following symbols: %, [], (), \, /, @, $, or #";
-		//FIXME
-		return;
-	}
+	validateForm(form, invalidSymbols, firstName, lastName, login, password, confirmPassword);
 
 	const jsonPayload = JSON.stringify({
 		name: firstName + " " + lastName,

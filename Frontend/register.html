@@ -23,25 +23,22 @@
                 <div class="row">
                     <div class="col">
                         <input type="text" id="firstName" name="firstName" class="form-control mt-2 mb-2" placeholder="Enter First Name" required>
-                        <div class="invalid-feedback emptyField d-none">This field cannot be empty</div>
+                        <div class="invalid-feedback" id="invalidfName"></div>
                     </div>
 
                     <div class="col">
                         <input type="text" id="lastName" name="lastName" class="form-control mt-2 mb-2" placeholder="Enter Last Name" required>
-                        <div class="invalid-feedback emptyField d-none">This field cannot be empty</div>
+                        <div class="invalid-feedback" id="invalidlName"></div>
                     </div>
                 </div>
-                    <input type="text" id="username" name="username" class="form-control mt-2 mb-2" placeholder="Enter Username" required>
-                        <div class="invalid-feedback emptyField d-none">This field cannot be empty</div>
-                        <div class="invalid-feedback d-none">Usernames must be at least 5 characters and cannot contain the following symbols: %, [], (), \, /, @, $, or #</div>
+                    <input type="text" id="username" name="username" class="form-control mt-2 mb-2" placeholder="Enter Username" minlength="5" required>
+                        <div class="invalid-feedback" id="invalidUser"></div>
 
-                    <input type="password" id="password" name="password" class="form-control mt-2 mb-2" placeholder="Enter Password" required>
-                        <div class="invalid-feedback emptyField d-none">This field cannot be empty</div>
-                        <div class="invalid-feedback d-none">Passwords must be at least 8 characters</div>
+                    <input type="password" id="password" name="password" class="form-control mt-2 mb-2" placeholder="Enter Password" minlength="8" required>
+                        <div class="invalid-feedback" id="invalidPass"></div>
 
-                    <input type="password" id="confirmPassword" name="password" class="form-control mt-2 mb-2" min=8 placeholder="Confirm Password" required>
-                        <div class="invalid-feedback emptyField d-none">Please confirm your password</div>
-                        <div class="invalid-feedback d-none" id="noMatch">Passwords must match</div>
+                    <input type="password" id="confirmPassword" name="password" class="form-control mt-2 mb-2" placeholder="Confirm Password" minlength="8" required>
+                        <div class="invalid-feedback" id="invalidMatch"></div>
 
                     <p id="errorMessage"></p>
                 <button class="btn btn-warning mt-5" type="button" onclick="handleRegister();">Register</button>
