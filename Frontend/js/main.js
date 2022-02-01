@@ -27,7 +27,7 @@ function handleLogin() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				let jsonObject = JSON.e(xhr.responseText);
+				let jsonObject = JSON.parse(xhr.responseText);
 				error = jsonObject.error;
 
 				if (error != "") {
@@ -126,7 +126,7 @@ function showAddForm() {
 function hideAddForm() {
     var element = document.getElementById("addContact");
     element.classList.add("d-none");
-} 
+}
 
 function saveCookie() {
 	let minutes = 60;
