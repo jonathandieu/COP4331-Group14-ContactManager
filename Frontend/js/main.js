@@ -33,6 +33,8 @@ function handleLogin() {
 				if (error != "") {
 					document.getElementById("errorMessage").innerHTML =
 						"User/Password combination incorrect";
+					login.classList.add("is-invalid");
+					password.classList.add("is-invalid");
 					return;
 				}
 
@@ -50,7 +52,7 @@ function handleLogin() {
 	}
 }
 
-function validateForm (form, invalidSymbols, firstName, lastName, login, password, confirmPassword) {
+function validateForm (form, validSymbols, firstName, lastName, login, password, confirmPassword) {
 	if (firstName === "") {
 		form.classList.add("was-validated");
 		document.getElementById("invalidfName").innerHTML = "This field is required";
@@ -63,13 +65,12 @@ function validateForm (form, invalidSymbols, firstName, lastName, login, passwor
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
 	}
-	/*
-	if (invalidSymbols.test(login)) {
+	
+	if (login.match(/\W/)) {
 		form.classList.add("was-validated");
-		document.getElementById("invalidUser").innerHTML = "Username cannot contain the following symbols: %, [], (), \, /, @, $, or #";
-		//FIXME: Symbols aren't accounted for after the length check becomes valid
+		document.getElementById("invalidUser").innerHTML = "Username cannot contain symbols such as %, &, @, etc.";
 	}
-	*/
+	
 	
 	if (password.length < 8) {
 		form.classList.add("was-validated");
@@ -88,7 +89,7 @@ function handleRegister() {
 	var i = 0;
 
 	const form = document.getElementById("registerForm");
-	const invalidSymbols = (/[@#$%()\\[\]\\\/]/);
+	const validSymbols = /^[A-Za-z0=9]+/;
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
 	const login = document.getElementById("username").value.trim().toLowerCase();
@@ -97,7 +98,7 @@ function handleRegister() {
 		.getElementById("confirmPassword")
 		.value.trim();
 
-	validateForm(form, invalidSymbols, firstName, lastName, login, password, confirmPassword);
+	validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
 
 	const jsonPayload = JSON.stringify({
 		name: firstName + " " + lastName,

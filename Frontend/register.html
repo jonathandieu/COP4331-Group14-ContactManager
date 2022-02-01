@@ -31,7 +31,7 @@
                         <div class="invalid-feedback" id="invalidlName"></div>
                     </div>
                 </div>
-                    <input type="text" id="username" name="username" class="form-control mt-2 mb-2" placeholder="Enter Username" minlength="5" required>
+                    <input type="text" id="username" name="username" class="form-control mt-2 mb-2" placeholder="Enter Username" minlength="5" pattern="^[A-Za-z0=9]+" required>
                         <div class="invalid-feedback" id="invalidUser"></div>
 
                     <input type="password" id="password" name="password" class="form-control mt-2 mb-2" placeholder="Enter Password" minlength="8" required>
@@ -40,7 +40,7 @@
                     <input type="password" id="confirmPassword" name="confirmPassword" class="form-control mt-2 mb-2" placeholder="Confirm Password" minlength="8" required>
                         <div class="invalid-feedback" id="invalidMatch"></div>
 
-                    <p id="errorMessage"></p>
+                    <div class="invalid-feedback" id="errorMessage"></div>
                 <button class="btn btn-warning mt-5" type="button" onclick="handleRegister();">Register</button>
                 <p>Already have an account? <a href="./index.html">Log in here.</a></p>
             </form>
