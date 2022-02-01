@@ -27,7 +27,7 @@ function handleLogin() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				let jsonObject = JSON.parse(xhr.responseText);
+				let jsonObject = JSON.e(xhr.responseText);
 				error = jsonObject.error;
 
 				if (error != "") {
@@ -118,6 +118,16 @@ function handleRegister() {
 	}
 }
 
+function showAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.remove("d-none");
+}
+
+function hideAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.add("d-none");
+} 
+
 function saveCookie() {
 	let minutes = 60;
 	let date = new Date();
@@ -132,7 +142,7 @@ function readCookie() {
 
 	const cookie = document.cookie;
 	const splits = cookie.split(";");
-	
+
 	for (let i = 0; i < splits.length; i++) {
 		const pair = splits[i].trim();
 		const values = pair.split("=");
