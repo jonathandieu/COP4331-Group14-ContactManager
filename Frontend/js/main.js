@@ -63,22 +63,22 @@ function validateForm (form, invalidSymbols, firstName, lastName, login, passwor
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
 	}
-	
+	/*
 	if (invalidSymbols.test(login)) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username cannot contain the following symbols: %, [], (), \, /, @, $, or #";
 		//FIXME: Symbols aren't accounted for after the length check becomes valid
 	}
+	*/
 	
 	if (password.length < 8) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
 	}
-	if (password !== confirmPassword || confirmPassword === "") {
+
+	if (password !== confirmPassword) {
 		form.classList.add("was-validated");
-		document.getElementById("invalidMatch").classList.add("is-invalid");
 		document.getElementById("invalidMatch").innerHTML = "Password must match";
-		//FIXME: input line is still green even if passwords don't match
 	}
 }
 
