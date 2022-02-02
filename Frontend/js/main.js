@@ -158,8 +158,21 @@ function readCookie() {
 	}
 }
 
+function deleteCookie() {
+	// Set the value of expires to a date that's already passed.
+	document.cookie = "fullName= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+}
+
 function setMessage(formElement, message) {
 	const messageElement = formElement.querySelector(".message");
 
 	messageElement.textContent = message;
+}
+
+function handleLogout() {
+	// Log the user out, let them know when they've done so successfully, and remove their cookies.
+
+	
+	deleteCookie();
+
 }
