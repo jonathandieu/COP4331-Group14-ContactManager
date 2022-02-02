@@ -139,6 +139,8 @@ function saveCookie() {
 function readCookie() {
 	fullName = "";
 	username = "";
+	//fullName = "John Smith";
+	//username = "jsmithyboy123";
 
 	const cookie = document.cookie;
 	const splits = cookie.split(";");
@@ -156,10 +158,6 @@ function readCookie() {
 	if (fullName === "" || username == "") {
 		window.location.href = "index.html";
 	}
-}
 
-function setMessage(formElement, message) {
-	const messageElement = formElement.querySelector(".message");
-
-	messageElement.textContent = message;
+	document.getElementById("fullname").innerHTML = fullName;
 }
