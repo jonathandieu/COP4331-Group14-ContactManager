@@ -118,6 +118,16 @@ function handleRegister() {
 	}
 }
 
+function showAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.remove("d-none");
+}
+
+function hideAddForm() {
+    var element = document.getElementById("addContact");
+    element.classList.add("d-none");
+}
+
 function saveCookie() {
 	let minutes = 60;
 	let date = new Date();
@@ -132,7 +142,7 @@ function readCookie() {
 
 	const cookie = document.cookie;
 	const splits = cookie.split(";");
-	
+
 	for (let i = 0; i < splits.length; i++) {
 		const pair = splits[i].trim();
 		const values = pair.split("=");
