@@ -50,6 +50,54 @@ function handleLogin() {
 	}
 }
 
+function addContact() {
+
+	const firstName = document.getElementById("contactfName").value.trim();
+	const lastName = document.getElementById("contactlName").value.trim();
+	const number = document.getElementById("phoneNumber").value.trim();
+	const location = document.getElementById("location").value.trim();
+	const email = document.getElementById("eaddress").value.trim();
+
+	if (firstName === "" && lastName === "") {
+		document.getElementById("addContactResult").innerHTML = "First and last name is empty";
+		event.preventDefault();
+		return;
+	}
+	
+	const jsonPayload = JSON.stringify({
+		name: firstName + " " + lastName,
+		login: username,
+		number: number,
+		email: email,
+		location: location,
+	});
+
+	const url = urlBase + "/NewContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("addContactResult").innerHTML = "Success";
+				console.log("success");
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("addContactResult").innerHTML = err.message;
+		console.log("error");
+	}
+	
+}
+
 function handleRegister() {
 	fullName = "";
 	username = "";
