@@ -14,12 +14,13 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
-
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            readCookie();
-        }, false);
-    </script>
+    <!--
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                readCookie();
+            }, false);
+        </script>
+    -->
 </head>
 
 <body class="vh-100 vw-100 d-flex flex-column">
@@ -54,13 +55,17 @@
 
                     <div class="container-fluid p-0">
                         <button type="button"
-                            class="btn btn-lg btn-block btn-warning shadow-none w-100 text-muted border-dark border-right-0 border-left-0"
+                            class="btn btn-lg btn-block btn-outline-dark shadow-none w-100 border-dark border-right-0 border-left-0 rounded-0"
                             onclick="showAddForm()">+ Add Contact</button>
                     </div>
                 </div>
 
-                <div class="container-fluid">
-                    list contacts
+                <div class="container-fluid p-0">
+                    <table class="bg-light w-100 text-center">
+                        <tr>
+                            <td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">example contact name</td>
+                        </tr>
+                    </table>
                 </div>
 
             </div>
@@ -69,27 +74,33 @@
 
                 <div class="container h-100">
 
-                    <div class="h-100 d-flex justify-content-center align-items-center px-5 d-none" id="addContact">
+                    <div class="h-100 d-flex justify-content-center align-items-center px-2 d-none" id="addContact">
                         <form class="form-horizontal form-group p-5 w-100">
 
-                            <h1 class="text-center display-2 mb-5">Add your Contact</h1>
+                            <h1 class="text-center display-2 mb-4">Add your Contact</h1>
                             <div class="row pt-5 mb-3 fs-5">
                                 <div class="col">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="First name">
+                                    <input type="text" class="form-control" placeholder="First name" id="contactfName">
                                 </div>
                                 <div class="col">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Last name">
+                                    <input type="text" class="form-control" placeholder="Last name" id="contactlName">
                                 </div>
                             </div>
-                            <div class="form-group mb-3 fs-5">
-                                <label for="phoneNumber">Phone Number:</label>
-                                <input type="tel" class="form-control" placeholder="123-456-789">
+                            <div class="row mb-3 fs-5">
+                                <div class="col">
+                                    <label for="phoneNumber">Phone Number:</label>
+                                    <input type="tel" class="form-control" placeholder="123-456-789" id="phoneNumber">
+                                </div>
+                                <div class="col">
+                                    <label for="email">E-Mail:</label>
+                                    <input type="email" class="form-control" placeholder="example@gmail.com" id="eaddress">
+                                </div>
                             </div>
                             <div class="form-group mb-5 fs-5">
                                 <label for="address">Address:</label>
-                                <input type="text" class="form-control" placeholder="1234 Main St.">
+                                <input type="text" class="form-control" placeholder="1234 Main St." id="location">
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -97,8 +108,9 @@
                                         onclick="hideAddForm()">Cancel</button>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-warning w-100" type="submit">Save</button>
+                                    <button type="submit" class="btn btn-warning w-100" type="submit" onclick="addContact()">Save</button>
                                 </div>
+                                <p id="addContactResult">test error</p>
                             </div>
                         </form>
                     </div>
