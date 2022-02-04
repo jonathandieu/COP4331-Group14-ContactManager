@@ -14,32 +14,11 @@ if( $conn->connect_error )
 }
 else
 {
-    $stmt = $conn->prepare("SELECT * FROM contacts WHERE login=? AND cname =?");
+    $stmt = $conn->prepare("SELECT * FROM * WHERE login=? AND cname =?");
     $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    returnWithInfo( $row['name'], $row['login']);
-    $stmt->close();
-
-    $stmt = $conn->prepare("SELECT * FROM emails WHERE login=? AND cname =?");
-    $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    returnWithInfo( $row['type'], $row['address']);
-    $stmt->close();
-
-    $stmt = $conn->prepare("SELECT * FROM phones WHERE login=? AND cname =?");
-    $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    returnWithInfo( $row['type'], $row['number']);
-    $stmt->close();
-
-    $stmt = $conn->prepare("SELECT * FROM locations WHERE login=? AND cname =?");
-    $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    returnWithInfo( $row['type'], $row['address']);
+    returnWithInfo( $row['cname'], $row['login']);
     $stmt->close();
 
     
