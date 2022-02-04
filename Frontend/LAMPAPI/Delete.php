@@ -13,8 +13,9 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("DELETE FROM contacts WHERE login='?' AND cname ='?'");
+		$stmt = $conn->prepare("DELETE FROM contacts WHERE login=? AND cname =?");
 		$stmt->bind_param("ss", $inData["login"], $inData["cname"]);
+        echo $stmt;
 		$stmt->execute();
 		$result = $stmt->get_result();
         returnWithError("");
