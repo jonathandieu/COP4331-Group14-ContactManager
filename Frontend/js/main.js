@@ -54,7 +54,7 @@ function addContact() {
 
 	const firstName = document.getElementById("contactfName").value.trim();
 	const lastName = document.getElementById("contactlName").value.trim();
-	const number = document.getElementById("phoneNumber").value.trim();
+	const number = parseInt(document.getElementById("phoneNumber").value.trim());
 	const location = document.getElementById("location").value.trim();
 	const email = document.getElementById("eaddress").value.trim();
 
@@ -65,11 +65,13 @@ function addContact() {
 	}
 	
 	const jsonPayload = JSON.stringify({
-		name: firstName + " " + lastName,
+		cname: firstName + " " + lastName,
 		login: username,
 		number: number,
-		email: email,
-		location: location,
+		etype: "",
+		eaddress: email,
+  		ltype: "",
+		laddress: location,
 	});
 
 	const url = urlBase + "/NewContact." + extension;
