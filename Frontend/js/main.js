@@ -171,8 +171,6 @@ function setMessage(formElement, message) {
 
 function handleLogout() {
 	// Log the user out, let them know when they've done so successfully, and remove their cookies.
-
-	window.alert("Log out is totally happening rn!");
+	alert("Log out is totally happening rn!");
 	deleteCookie();
-
 }
