@@ -43,6 +43,7 @@
                 $stmt->close();
                 break;
         }
+        $row = $result->fetch_assoc();
 		returnWithInfo( $row['cname']);
 
         returnWithError("");
