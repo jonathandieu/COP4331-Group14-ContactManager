@@ -20,24 +20,28 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $stmt->close();
+                break;
             case 1;
                 $stmt = $conn->prepare("DELETE FROM emails WHERE login=? AND cname =?");
                 $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $stmt->close();
+                break;
             case 2;
                 $stmt = $conn->prepare("DELETE FROM phones WHERE login=? AND cname =?");
                 $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $stmt->close();
+                break;
             case 3;
                 $stmt = $conn->prepare("DELETE FROM locations WHERE login=? AND cname =?");
                 $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $stmt->close();
+                break;
         }
 
         returnWithError("");
