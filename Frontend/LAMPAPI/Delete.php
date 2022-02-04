@@ -4,7 +4,6 @@
     $opperation = $inData["field"];
 	$cname = $inData["cname"];
 	$login = $inData["login"];
-    $identifier - $inData["identifier"];
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if ($conn->connect_error)
@@ -13,11 +12,38 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("DELETE FROM contacts WHERE login=? AND cname =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["cname"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
-        returnWithError("");
+        switch ($opperation) 
+        {
+            case 0;
+                $stmt = $conn->prepare("DELETE FROM contacts WHERE login=? AND cname =?");
+                $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                returnWithError("");
+            case 1;
+                $stmt = $conn->prepare("DELETE FROM emails WHERE login=? AND cname =?");
+                $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                returnWithError("");
+            case 2;
+                $stmt = $conn->prepare("DELETE FROM phones WHERE login=? AND cname =?");
+                $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                returnWithError("");
+            case 3;
+                $stmt = $conn->prepare("DELETE FROM locations WHERE login=? AND cname =?");
+                $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                returnWithError("");
+        }
+
+        
+		$stmt->close();
+		$conn->close();
+
 
 	}
 

@@ -2,7 +2,8 @@
 <?php
 
 	$inData = getRequestInfo();
-
+	$login = $inData["login"];
+    $password = $inData["password"];
 
 	
 
