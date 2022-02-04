@@ -2,10 +2,7 @@
 <?php
 
 	$inData = getRequestInfo();
-	$login = $inData["login"];
-    $password = $inData["password"];
 
-	
 
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if( $conn->connect_error )
@@ -14,7 +11,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT name,login FROM users WHERE login=? AND cname =?");
+		$stmt = $conn->prepare("SELECT name,login FROM users WHERE login=? AND name =?");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
