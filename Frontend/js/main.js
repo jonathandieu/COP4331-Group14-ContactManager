@@ -55,11 +55,15 @@ function addContact() {
 	const firstName = document.getElementById("contactfName").value.trim();
 	const lastName = document.getElementById("contactlName").value.trim();
 	const number = parseInt(document.getElementById("phoneNumber").value.trim());
+	const numberType = document.getElementById("ptype").value.trim();
 	const location = document.getElementById("location").value.trim();
+	const locationType = document.getElementById("ltype").value.trim();
 	const email = document.getElementById("eaddress").value.trim();
+	const emailType = document.getElementById("etype").value.trim();
+	const contactForm = document.getElementById("addContactForm");
 
 	if (firstName === "" && lastName === "") {
-		document.getElementById("addContactResult").innerHTML = "First and last name is empty";
+		contactForm.classList.add("was-validated");
 		event.preventDefault();
 		return;
 	}
@@ -68,9 +72,10 @@ function addContact() {
 		cname: firstName + " " + lastName,
 		login: username,
 		number: number,
-		etype: "",
+		ptype: numberType,
+		etype: emailType,
 		eaddress: email,
-  		ltype: "",
+  		ltype: locationType,
 		laddress: location,
 	});
 

@@ -14,12 +14,13 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
-
+<!--
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
         }, false);
     </script>
+-->
 
 </head>
 
@@ -76,33 +77,51 @@
                 <div class="container h-100">
 
                     <div class="h-100 d-flex justify-content-center align-items-center px-2 d-none" id="addContact">
-                        <form class="form-horizontal form-group p-5 w-100">
+                        <form class="form-horizontal form-group p-5 w-100 requires-validation" id="addContactForm" novalidate>
 
                             <h1 class="text-center display-2 mb-4">Add your Contact</h1>
                             <div class="row pt-5 mb-3 fs-5">
                                 <div class="col">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="First name" id="contactfName">
+                                    <input type="text" class="form-control" placeholder="First name" id="contactfName" required>
+                                    <div class="invalid-feedback"><small>This field is required</small></div>
                                 </div>
                                 <div class="col">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Last name" id="contactlName">
+                                    <input type="text" class="form-control" placeholder="Last name" id="contactlName" required>
+                                    <div class="invalid-feedback"><small>This field is required</small></div>
                                 </div>
                             </div>
                             <div class="row mb-3 fs-5">
                                 <div class="col">
                                     <label for="phoneNumber">Phone Number:</label>
-                                    <input type="tel" class="form-control" placeholder="123-456-789" id="phoneNumber">
+                                    <input type="tel" class="form-control" placeholder="1234567890" minlength="10" maxlength="10" id="phoneNumber" pattern="\d*">
+                                    <div class="invalid-feedback"><small>Enter a valid phone number (Format: 1234567890)</small></div>
+                                </div>
+                                <div class="col-2">
+                                    <label for="ptype">Type:</label>
+                                    <input type="text" class="form-control" placeholder="ex. Work phone" id="ptype">
                                 </div>
                                 <div class="col">
                                     <label for="email">E-Mail:</label>
                                     <input type="email" class="form-control" placeholder="example@gmail.com"
                                         id="eaddress">
+                                    <div class="invalid-feedback"><small>Enter a valid e-mail address</small></div>
+                                </div>
+                                <div class="col-2">
+                                    <label for="etype">Type:</label>
+                                    <input type="text" class="form-control" placeholder="ex. Work e-mail" id="etype">
                                 </div>
                             </div>
-                            <div class="form-group mb-5 fs-5">
-                                <label for="address">Address:</label>
-                                <input type="text" class="form-control" placeholder="1234 Main St." id="location">
+                            <div class="row mb-3 fs-5 mb-5">
+                                <div class="col">
+                                    <label for="address">Address:</label>
+                                    <input type="text" class="form-control" placeholder="1234 Main St." id="location">
+                                </div>
+                                <div class="col-2">
+                                    <label for="ltype">Type:</label>
+                                    <input type="text" class="form-control" placeholder="ex. Home address" id="ltype">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -113,7 +132,7 @@
                                     <button type="submit" class="btn btn-warning w-100" type="submit"
                                         onclick="addContact();">Save</button>
                                 </div>
-                                <p id="addContactResult">test error</p>
+                                <p id="addContactResult" class="text-danger"></p>
                             </div>
                         </form>
                     </div>
