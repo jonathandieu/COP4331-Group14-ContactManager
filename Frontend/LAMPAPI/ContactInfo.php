@@ -19,26 +19,30 @@ else
     $stmt->execute();
     $result = $stmt->get_result();
     returnWithInfo( $row['name'], $row['login']);
+    $stmt->close();
 
     $stmt = $conn->prepare("SELECT * FROM emails WHERE login=? AND cname =?");
     $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
     $stmt->execute();
     $result = $stmt->get_result();
     returnWithInfo( $row['type'], $row['address']);
+    $stmt->close();
 
     $stmt = $conn->prepare("SELECT * FROM phones WHERE login=? AND cname =?");
     $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
     $stmt->execute();
     $result = $stmt->get_result();
     returnWithInfo( $row['type'], $row['number']);
+    $stmt->close();
 
     $stmt = $conn->prepare("SELECT * FROM locations WHERE login=? AND cname =?");
     $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
     $stmt->execute();
     $result = $stmt->get_result();
     returnWithInfo( $row['type'], $row['address']);
-
     $stmt->close();
+
+    
     $conn->close();
 }
 
