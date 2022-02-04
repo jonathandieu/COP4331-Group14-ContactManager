@@ -74,8 +74,6 @@ function addContact() {
 		laddress: location,
 	});
 
-	console.log(jsonPayload);
-
 	const url = urlBase + "/NewContact." + extension;
 
 	let xhr = new XMLHttpRequest();
@@ -86,8 +84,6 @@ function addContact() {
 	{
 		xhr.onreadystatechange = function() 
 		{
-			let jsonObject = JSON.parse(xhr.responseText);
-			console.log(jsonObject);
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
