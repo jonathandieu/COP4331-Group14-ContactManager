@@ -50,6 +50,61 @@ function handleLogin() {
 	}
 }
 
+function addContact() {
+
+	const firstName = document.getElementById("contactfName").value.trim();
+	const lastName = document.getElementById("contactlName").value.trim();
+	const number = parseInt(document.getElementById("phoneNumber").value.trim());
+	const numberType = document.getElementById("ptype").value.trim();
+	const location = document.getElementById("location").value.trim();
+	const locationType = document.getElementById("ltype").value.trim();
+	const email = document.getElementById("eaddress").value.trim();
+	const emailType = document.getElementById("etype").value.trim();
+	const contactForm = document.getElementById("addContactForm");
+
+	if (firstName === "" && lastName === "") {
+		contactForm.classList.add("was-validated");
+		event.preventDefault();
+		return;
+	}
+	
+	const jsonPayload = JSON.stringify({
+		cname: firstName + " " + lastName,
+		login: username,
+		number: number,
+		ptype: numberType,
+		etype: emailType,
+		eaddress: email,
+  		ltype: locationType,
+		laddress: location,
+	});
+
+	const url = urlBase + "/NewContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("addContactResult").innerHTML = "Success";
+				console.log("success");
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("addContactResult").innerHTML = err.message;
+		console.log("error");
+	}
+	
+}
+
 function handleRegister() {
 	fullName = "";
 	username = "";
@@ -139,6 +194,8 @@ function saveCookie() {
 function readCookie() {
 	fullName = "";
 	username = "";
+	//fullName = "John Smith";
+	//username = "jsmithyboy123";
 
 	const cookie = document.cookie;
 	const splits = cookie.split(";");
@@ -156,10 +213,6 @@ function readCookie() {
 	if (fullName === "" || username == "") {
 		window.location.href = "index.html";
 	}
-}
 
-function setMessage(formElement, message) {
-	const messageElement = formElement.querySelector(".message");
-
-	messageElement.textContent = message;
+	document.getElementById("fullname").innerHTML = fullName;
 }
