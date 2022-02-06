@@ -15,25 +15,25 @@
         switch ($opperation) 
         {
             case 0;
-                $stmt = $conn->prepare("SELECT cname FROM contacts WHERE login=? AND cname=?");
+                $stmt = $conn->prepare("SELECT cname FROM contacts WHERE login=? AND cname like ?");
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 break;
             case 1;
-                $stmt = $conn->prepare("SELECT cname FROM emails WHERE login=? AND address=?");
+                $stmt = $conn->prepare("SELECT cname FROM emails WHERE login=? AND address like ?");
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 break;
             case 2;
-                $stmt = $conn->prepare("SELECT cname FROM phones WHERE login=? AND number =?");
+                $stmt = $conn->prepare("SELECT cname FROM phones WHERE login=? AND number like ?");
                 $stmt->bind_param("si", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 break;
             case 3;
-                $stmt = $conn->prepare("SELECT cname FROM locations WHERE login=? AND address =?");
+                $stmt = $conn->prepare("SELECT cname FROM locations WHERE login=? AND address like ?");
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
