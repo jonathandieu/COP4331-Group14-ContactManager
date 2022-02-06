@@ -19,35 +19,46 @@
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                $stmt->close();
                 break;
             case 1;
                 $stmt = $conn->prepare("SELECT cname FROM emails WHERE login=? AND address=?");
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                $stmt->close();
                 break;
             case 2;
                 $stmt = $conn->prepare("SELECT cname FROM phones WHERE login=? AND number =?");
                 $stmt->bind_param("si", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                $stmt->close();
                 break;
             case 3;
                 $stmt = $conn->prepare("SELECT cname FROM locations WHERE login=? AND address =?");
                 $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                $stmt->close();
                 break;
         }
-        $row = $result->fetch_assoc();
-		returnWithInfo( $row['cname']);
+        while($row = $result->fetch_assoc())
+		{
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+			$searchCount++;
+			$searchResults .= '"' . $row["cname"] . '"';
+		}
 
-        returnWithError("");
-		
+		if( $searchCount == 0 )
+		{
+			returnWithError( "No Records Found" );
+		}
+		else
+		{
+			returnWithInfo( $searchResults );
+		}
+
+		$stmt->close();
 		$conn->close();
 
 
