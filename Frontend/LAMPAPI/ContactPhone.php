@@ -2,9 +2,6 @@
 <?php
 
 $inData = getRequestInfo();
-$login = $inData["login"];
-$cname = $inData["cname"];
-
 
 
 $conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
@@ -14,14 +11,21 @@ if( $conn->connect_error )
 }
 else
 {
-    $stmt = $conn->prepare("SELECT * FROM * WHERE login=? AND cname =?");
+    $stmt = $conn->prepare("SELECT cname,number FROM phones WHERE login=? AND cname =?");
     $stmt->bind_param("ss", $inData["login"], $inData["cname"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    returnWithInfo( $row['cname'], $row['login']);
-    $stmt->close();
 
-    
+    if( $row = $result->fetch_assoc()  )
+    {
+        returnWithInfo( $row['cname'], $row['address']);
+    }
+    else
+    {
+        returnWithError("No Records Found");
+    }
+
+    $stmt->close();
     $conn->close();
 }
 
@@ -38,13 +42,13 @@ function sendResultInfoAsJson( $obj )
 
 function returnWithError( $err )
 {
-    $retValue = '{"name":"","login":"","error":"' . $err . '"}';
+    $retValue = '{"cname":"","number":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
 }
 
-function returnWithInfo( $name, $login )
+function returnWithInfo( $cname, $address )
 {
-    $retValue = '{"name":"' . $name . '","login":"' . $login . '","error":""}';
+    $retValue = '{"cname":"' . $cname . '","number":"' . $number . '","error":""}';
     sendResultInfoAsJson( $retValue );
 }
 
