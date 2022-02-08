@@ -257,7 +257,7 @@ function getContacts(field, look) {
 		look: look,
 	});
 
-	const url = urlBase + "/NewContact." + extension;
+	const url = urlBase + "/SearchContact." + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -267,6 +267,7 @@ function getContacts(field, look) {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
+				console.log(jsonObject);
 				error = jsonObject.error;
 
 				if (error != "") {
