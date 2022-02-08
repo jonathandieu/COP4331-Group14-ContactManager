@@ -8,8 +8,11 @@ function handleLogin() {
 	fullName = "";
 	username = "";
 
-	let login = document.getElementById("username").value;
-	let password = document.getElementById("password").value;
+	let login = document.getElementById("loginUsername").value;
+	let password = document.getElementById("loginPassword").value;
+
+	const loginInput = document.getElementById("loginUsername");
+	const passInput = document.getElementById("loginPassword");
 
 	document.getElementById("errorMessage").innerHTML = "";
 
@@ -30,11 +33,12 @@ function handleLogin() {
 				let jsonObject = JSON.parse(xhr.responseText);
 				error = jsonObject.error;
 
-				if (error != "") {
+				if (error != "" || (login === "" && password === "")) {
 					document.getElementById("errorMessage").innerHTML =
 						"User/Password combination incorrect";
-					login.classList.add("is-invalid");
-					password.classList.add("is-invalid");
+					loginInput.classList.add("is-invalid");
+					passInput.classList.add("is-invalid");
+					event.preventDefault();
 					return;
 				}
 
@@ -53,46 +57,43 @@ function handleLogin() {
 }
 
 function validateForm (form, validSymbols, firstName, lastName, login, password, confirmPassword) {
+	
+	let flag = 0;
+
 	if (firstName === "") {
 		form.classList.add("was-validated");
 		document.getElementById("invalidfName").innerHTML = "This field is required";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
 	if (lastName === "") {
 		form.classList.add("was-validated");
 		document.getElementById("invalidlName").innerHTML = "This field is required";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
 	if (login.length < 5) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
 	
 	if (login.match(/\W/)) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username cannot contain symbols such as %, &, @, etc.";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
-	
 	
 	if (password.length < 8) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
 
 	if (password !== confirmPassword) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidMatch").innerHTML = "Password must match";
-		event.preventDefault();
-		return;
+		flag = 1;
 	}
+	return flag;
 }
 
 function addContact() {
@@ -166,7 +167,11 @@ function handleRegister() {
 		.getElementById("confirmPassword")
 		.value.trim();
 
-	validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
+	const result = validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
+	if (result == 1) {
+		event.preventDefault();
+		return;
+	}
 
 	const jsonPayload = JSON.stringify({
 		name: firstName + " " + lastName,
