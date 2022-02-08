@@ -18,7 +18,7 @@ else
 
     if( $row = $result->fetch_assoc()  )
     {
-        returnWithInfo( $row['cname'], $row['address']);
+        returnWithInfo( $row['cname'], $row['number']);
     }
     else
     {
