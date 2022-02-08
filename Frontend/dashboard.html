@@ -21,12 +21,13 @@
             getContacts(0, "_");
         }, false);
 
-        document.getElementById("form1").addEventListener("keyup", function (event) {
+        let input = document.getElementById("form1");
+        input.addEventListener("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
                 const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
                 const field = document.querySelector('input[name="search"]:checked').value;
-                const look = document.getElementById("form1").value;
+                const look = input.value;
                 console.log({field, look});
 
                 getContacts(field, look);
@@ -64,7 +65,7 @@
                 <div class="container-fluid bg-warning p-0">
                     <div class="container-fluid form-outline py-3">
                         <input type="search" id="form1" class="form-control shadow-none" placeholder="Search..."
-                            aria-label="Search" onclick="" />
+                            aria-label="Search" />
 
                         <div>
                             <input type="radio" id="cname" name="search" value="cname" checked>
