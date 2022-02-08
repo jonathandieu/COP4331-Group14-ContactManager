@@ -280,7 +280,7 @@ function getContacts(field, look) {
 						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${contact}</td>
 					</tr>
 					`;
-				});
+				}).join('');
 			}
 		};
 		xhr.send(jsonPayload);
