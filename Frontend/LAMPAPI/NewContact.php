@@ -7,7 +7,7 @@
     $eaddress = $inData["eaddress"];
 
     $ptype = $inData["ptype"];
-    $paddress = $inData["paddress"];
+    $paddress = $inData["number"];
 
     $ltype = $inData["ltype"];
     $laddress = $inData["laddress"];
