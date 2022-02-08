@@ -276,7 +276,7 @@ function getContacts(field, look) {
 					`;
 					return;
 				}
-
+				console.log(jsonObject.results);
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
 					return `<tr>
 						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${contact}</td>
