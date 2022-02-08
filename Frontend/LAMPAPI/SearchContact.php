@@ -28,7 +28,7 @@
                 break;
             case 2;
                 $stmt = $conn->prepare("SELECT cname FROM phones WHERE login=? AND number like ?");
-                $stmt->bind_param("si", $inData["login"], $inData["look"]);
+                $stmt->bind_param("ss", $inData["login"], $inData["look"]);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 break;
