@@ -19,20 +19,21 @@
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
             getContacts(0, "_");
+
+            let input = document.getElementById("searchField");
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
+                    const field = document.querySelector('input[name="search"]:checked').value;
+                    const look = input.value;
+                    console.log({field, look});
+
+                    getContacts(field, look);
+                }
+            });
+
         }, false);
-
-        let input = document.getElementById("searchField");
-        input.addEventListener("keyup", function (event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
-                const field = document.querySelector('input[name="search"]:checked').value;
-                const look = input.value;
-                console.log({field, look});
-
-                getContacts(field, look);
-            }
-        });
     </script>
 
 </head>
