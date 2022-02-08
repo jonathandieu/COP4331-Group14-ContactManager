@@ -1,6 +1,5 @@
 <?php
 	$inData = getRequestInfo();
-	$ret = "";
 	$login = $inData["login"];
 	$cname = $inData["cname"];
 
@@ -45,7 +44,7 @@
 			if (strcmp($ptype,"") == 0)
 				$etype = "Home";
             $stmt = $conn->prepare("INSERT into phones (login,cname,type,number) VALUES(?,?,?,?)");
-            $stmt->bind_param("sssi", $login, $cname, $ptype, $paddress);
+            $stmt->bind_param("ssss", $login, $cname, $ptype, $paddress);
 	        $stmt->execute();
 	        $stmt->close();
         }
