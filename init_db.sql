@@ -35,7 +35,7 @@ CREATE TABLE phones (
     login VARCHAR(64) NOT NULL DEFAULT '',
     cname VARCHAR(255) NOT NULL DEFAULT '',
     type VARCHAR(64) NOT NULL DEFAULT 'home',
-    number INT NOT NULL DEFAULT 0,
+    number BIGINT NOT NULL DEFAULT 0,
     FOREIGN KEY (login, cname) REFERENCES contacts (login, cname)
 		ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (login, cname, number)
