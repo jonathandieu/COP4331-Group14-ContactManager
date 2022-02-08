@@ -137,7 +137,6 @@ function addContact() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
-				console.log("success");
 			}
 		};
 		xhr.send(jsonPayload);
@@ -145,7 +144,6 @@ function addContact() {
 	catch(err)
 	{
 		document.getElementById("addContactResult").innerHTML = err.message;
-		console.log("error");
 	}
 	
 
@@ -257,7 +255,6 @@ function getContacts(field, look) {
 		look: "%" + look + "%",
 	});
 
-	console.log(jsonPayload);
 
 	const url = urlBase + "/SearchContact." + extension;
 
@@ -269,7 +266,6 @@ function getContacts(field, look) {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
-				console.log(jsonObject);
 				error = jsonObject.error;
 
 				if (error != "") {
@@ -279,7 +275,6 @@ function getContacts(field, look) {
 					`;
 					return;
 				}
-				console.log(jsonObject.results);
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
 					return `<tr>
 						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${contact}</td>
