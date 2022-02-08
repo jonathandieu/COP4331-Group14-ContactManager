@@ -56,30 +56,42 @@ function validateForm (form, validSymbols, firstName, lastName, login, password,
 	if (firstName === "") {
 		form.classList.add("was-validated");
 		document.getElementById("invalidfName").innerHTML = "This field is required";
+		event.preventDefault();
+		return;
 	}
 	if (lastName === "") {
 		form.classList.add("was-validated");
 		document.getElementById("invalidlName").innerHTML = "This field is required";
+		event.preventDefault();
+		return;
 	}
 	if (login.length < 5) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
+		event.preventDefault();
+		return;
 	}
 	
 	if (login.match(/\W/)) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username cannot contain symbols such as %, &, @, etc.";
+		event.preventDefault();
+		return;
 	}
 	
 	
 	if (password.length < 8) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
+		event.preventDefault();
+		return;
 	}
 
 	if (password !== confirmPassword) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidMatch").innerHTML = "Password must match";
+		event.preventDefault();
+		return;
 	}
 }
 
