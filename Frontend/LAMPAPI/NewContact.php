@@ -40,7 +40,7 @@
         }
 		
     	// Phones
-        if (strlen($paddress) > 0)
+        if (($paddress) > 0)
         {
 			if (strcmp($ptype,"") == 0)
 				$etype = "Home";
