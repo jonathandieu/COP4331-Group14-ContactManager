@@ -25,10 +25,8 @@
                 if (event.keyCode === 13) {
                     event.preventDefault();
                     const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
-                    const field = document.querySelector('input[name="search"]:checked').value;
+                    const field = fieldValues[document.querySelector('input[name="search"]:checked').value];
                     const look = input.value;
-                    console.log({field, look});
-
                     getContacts(field, look);
                 }
             });
