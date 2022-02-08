@@ -81,6 +81,7 @@ function validateForm (form, validSymbols, firstName, lastName, login, password,
 		form.classList.add("was-validated");
 		document.getElementById("invalidMatch").innerHTML = "Password must match";
 	}
+}
 
 function addContact() {
 
