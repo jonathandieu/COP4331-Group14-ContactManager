@@ -137,7 +137,6 @@ function addContact() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
-				console.log("success");
 			}
 		};
 		xhr.send(jsonPayload);
@@ -145,7 +144,6 @@ function addContact() {
 	catch(err)
 	{
 		document.getElementById("addContactResult").innerHTML = err.message;
-		console.log("error");
 	}
 	
 
@@ -248,4 +246,45 @@ function readCookie() {
 	}
 
 	document.getElementById("fullname").innerHTML = fullName;
+}
+
+function getContacts(field, look) {
+	const jsonPayload = JSON.stringify({
+		login: username,
+		field: 0,
+		look: "%" + look + "%",
+	});
+
+
+	const url = urlBase + "/SearchContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				error = jsonObject.error;
+
+				if (error != "") {
+					document.getElementById("contactList").innerHTML = `<tr>
+						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${error}</td>
+					</tr>
+					`;
+					return;
+				}
+				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
+					return `<tr>
+						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${contact}</td>
+					</tr>
+					`;
+				}).join('');
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		document.getElementById("contactList").innerHTML = err.message;
+	}
 }
