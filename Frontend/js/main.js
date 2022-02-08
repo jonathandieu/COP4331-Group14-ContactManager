@@ -33,6 +33,8 @@ function handleLogin() {
 				if (error != "") {
 					document.getElementById("errorMessage").innerHTML =
 						"User/Password combination incorrect";
+					login.classList.add("is-invalid");
+					password.classList.add("is-invalid");
 					return;
 				}
 
@@ -47,6 +49,37 @@ function handleLogin() {
 		xhr.send(jsonPayload);
 	} catch (err) {
 		document.getElementById("errorMessage").innerHTML = err.message;
+	}
+}
+
+function validateForm (form, validSymbols, firstName, lastName, login, password, confirmPassword) {
+	if (firstName === "") {
+		form.classList.add("was-validated");
+		document.getElementById("invalidfName").innerHTML = "This field is required";
+	}
+	if (lastName === "") {
+		form.classList.add("was-validated");
+		document.getElementById("invalidlName").innerHTML = "This field is required";
+	}
+	if (login.length < 5) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
+	}
+	
+	if (login.match(/\W/)) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidUser").innerHTML = "Username cannot contain symbols such as %, &, @, etc.";
+	}
+	
+	
+	if (password.length < 8) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
+	}
+
+	if (password !== confirmPassword) {
+		form.classList.add("was-validated");
+		document.getElementById("invalidMatch").innerHTML = "Password must match";
 	}
 }
 
@@ -103,12 +136,16 @@ function addContact() {
 		console.log("error");
 	}
 	
+
 }
 
 function handleRegister() {
 	fullName = "";
 	username = "";
+	var i = 0;
 
+	const form = document.getElementById("registerForm");
+	const validSymbols = /^[A-Za-z0=9]+/;
 	const firstName = document.getElementById("firstName").value.trim();
 	const lastName = document.getElementById("lastName").value.trim();
 	const login = document.getElementById("username").value.trim().toLowerCase();
@@ -117,23 +154,7 @@ function handleRegister() {
 		.getElementById("confirmPassword")
 		.value.trim();
 
-	if (
-		firstName === "" ||
-		lastName === "" ||
-		login === "" ||
-		password === "" ||
-		confirmPassword === ""
-	) {
-		document.getElementById("errorMessage").innerHTML =
-			"One or more fields are empty";
-		return;
-	}
-
-	if (password !== confirmPassword) {
-		document.getElementById("errorMessage").innerHTML =
-			"Passwords do not match";
-		return;
-	}
+	validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
 
 	const jsonPayload = JSON.stringify({
 		name: firstName + " " + lastName,
