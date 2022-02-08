@@ -21,7 +21,7 @@
             getContacts(0, "_");
         }, false);
 
-        let input = document.getElementById("form1");
+        let input = document.getElementById("searchField");
         input.addEventListener("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -64,7 +64,7 @@
                 <!--Container for the search and add, which also have their own containers-->
                 <div class="container-fluid bg-warning p-0">
                     <div class="container-fluid form-outline py-3">
-                        <input type="search" id="form1" class="form-control shadow-none" placeholder="Search..."
+                        <input type="search" id="searchField" class="form-control shadow-none" placeholder="Search..."
                             aria-label="Search" />
 
                         <div>
