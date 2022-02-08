@@ -252,7 +252,7 @@ function readCookie() {
 
 function getContacts(field, look) {
 	const jsonPayload = JSON.stringify({
-		login: login,
+		login: username,
 		field: field,
 		look: look,
 	});
