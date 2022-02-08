@@ -39,6 +39,7 @@
                 $result = $stmt->get_result();
                 break;
         }
+
         while($row = $result->fetch_assoc())
 		{
 			if( $searchCount > 0 )
@@ -81,9 +82,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $cname)
+	function returnWithInfo( $searchResults )
 	{
-		$retValue = '{"cname":"' . $cname . '","error":""}';
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
-    }
+	}
 ?>
