@@ -1,7 +1,7 @@
 <?php
 	$inData = getRequestInfo();
 
-    $opperation = $inData["field"];
+    $operation = $inData["field"];
 	$look = $inData["look"];
 	$login = $inData["login"];
 
@@ -12,7 +12,7 @@
 	}
 	else
 	{
-        switch ($opperation) 
+        switch ($operation) 
         {
             case 0;
                 $stmt = $conn->prepare("SELECT cname FROM contacts WHERE login=? AND cname like ?");
