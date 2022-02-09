@@ -323,43 +323,43 @@ function getContact(contact) {
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 
 				if (jsonObject.number === undefined || jsonObject.number === null || jsonObject.number === "") {
-					document.getElementById("contactPhone").classList.add("d-hidden");
-					document.getElementById("contactPhoneLabel").classList.add("d-hidden");
+					document.getElementById("contactPhone").classList.add("d-none");
+					document.getElementById("contactPhoneLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactPhone").innerHTML = jsonObject.number;
 				}
 
 				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype === "") {
-					document.getElementById("contactPhoneType").classList.add("d-hidden");
-					document.getElementById("contactPhoneTypeLabel").classList.add("d-hidden");
+					document.getElementById("contactPhoneType").classList.add("d-none");
+					document.getElementById("contactPhoneTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
 				}
 
 				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress === "") {
-					document.getElementById("contactEmail").classList.add("d-hidden");
-					document.getElementById("contactEmailLabel").classList.add("d-hidden");
+					document.getElementById("contactEmail").classList.add("d-none");
+					document.getElementById("contactEmailLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
 				}
 
 				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype === "") {
-					document.getElementById("contactEmailType").classList.add("d-hidden");
-					document.getElementById("contactEmailTypeLabel").classList.add("d-hidden");
+					document.getElementById("contactEmailType").classList.add("d-none");
+					document.getElementById("contactEmailTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
 				}
 
 				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress === "") {
-					document.getElementById("contactAddress").classList.add("d-hidden");
-					document.getElementById("contactAddressLabel").classList.add("d-hidden");
+					document.getElementById("contactAddress").classList.add("d-none");
+					document.getElementById("contactAddressLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
 				}
 
 				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype === "") {
-					document.getElementById("contactAddressType").classList.add("d-hidden");
-					document.getElementById("contactAddressTypeLabel").classList.add("d-hidden");
+					document.getElementById("contactAddressType").classList.add("d-none");
+					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
 				}
