@@ -32,13 +32,13 @@
 		$stmt->execute();
         $stmt->close();
 
-        // // email
-        // if (strcmp($etype,"") == 0)
-				// $etype = "Home";
-        // $stmt = $conn->prepare("UPDATE emails SET address=?, type=? WHERE login=? AND cname=?");
-        // $stmt->bind_param("ssss", $eaddress, $etype, $login, $cname);
-        // $stmt->execute();
-        // $stmt->close();
+        // email
+        if (strcmp($etype,"") == 0)
+				$etype = "Home";
+        $stmt = $conn->prepare("UPDATE emails SET address=?, type=? WHERE login=? AND cname=?");
+        $stmt->bind_param("ssss", $eaddress, $etype, $login, $cname);
+        $stmt->execute();
+        $stmt->close();
 
         // // phone
         // if (strlen($ptype) == 0)
