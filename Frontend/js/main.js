@@ -322,6 +322,8 @@ function getContact(contact) {
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 
+				console.log(jsonObject.number);
+
 				if (jsonObject.number === undefined || jsonObject.number === null) {
 					document.getElementById("contactPhone").classList.add("d-none");
 					document.getElementById("contactPhoneLabel").classList.add("d-none");
@@ -335,7 +337,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
 				}
-				
+
 				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null) {
 					document.getElementById("contactEmail").classList.add("d-none");
 					document.getElementById("contactEmailLabel").classList.add("d-none");
