@@ -4,8 +4,6 @@
 	$inData = getRequestInfo();
 
 
-	
-
 	$conn = new mysqli("localhost", "Admin", "Admin", "yellabook");
 	if( $conn->connect_error )
 	{
