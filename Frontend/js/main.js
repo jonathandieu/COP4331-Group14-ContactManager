@@ -296,7 +296,36 @@ function getContacts(field, look) {
 }
 
 function getContact(contact) {
-	console.log("HELLO WORLD");
-	console.log(contact);
+	const jsonPayload = JSON.stringify({
+		login: username,
+		cname: contact
+	});
+
+	const url = urlBase + "/GetContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				error = jsonObject.error;
+
+				if (error != "") {
+					return;
+				}
+
+				document.getElementById("contactInfo").classList.remove("d-none");
+				document.getElementById("addContact").classList.add("d-none");
+
+				document.getElementById("contactName").innerHTML = jsonObject.cname;
+
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+	}	
 }
 
