@@ -212,6 +212,7 @@ function handleRegister() {
 function showAddForm() {
     var element = document.getElementById("addContact");
     element.classList.remove("d-none");
+	document.getElementById("contactInfo").classList.add("d-none");
 }
 
 function hideAddForm() {
