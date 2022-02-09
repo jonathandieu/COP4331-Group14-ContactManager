@@ -321,6 +321,9 @@ function getContact(contact) {
 				document.getElementById("addContact").classList.add("d-none");
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
+				document.getElementById("contactPhone").innerHTML = jsonObject.number;
+				document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
+				document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
 
 			}
 		};
