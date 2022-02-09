@@ -281,12 +281,8 @@ function getContacts(field, look) {
 					return;
 				}
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
-					const callback = function () {
-						getContact(contact);
-					} 
-						
 					return `<tr>
-						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="${callback();}">${contact}</td>
+						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact();">${contact}</td>
 					</tr>
 					`;
 				}).join('');
@@ -298,7 +294,7 @@ function getContacts(field, look) {
 	}
 }
 
-function getContact(contact) {
-	console.log(contact);
+function getContact() {
+	console.log("HELLO WORLD");
 }
 
