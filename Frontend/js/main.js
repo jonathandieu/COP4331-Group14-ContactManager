@@ -280,11 +280,19 @@ function getContacts(field, look) {
 					`;
 					return;
 				}
+
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
-					return `<tr>
-						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact();">${contact}</td>
-					</tr>
-					`;
+					let tableRow = document.createElement('tr');
+					let tableData = document.createElementElement('td');
+					tableData.innerHTML = contact;
+					tableData.class = "py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0";
+					tableData.onclick = function () {
+						getContact(contact);
+					}
+
+					tableRow.appendChild(tableData);
+
+					return tableRow;
 				}).join('');
 			}
 		};
@@ -294,7 +302,8 @@ function getContacts(field, look) {
 	}
 }
 
-function getContact() {
+function getContact(contact) {
 	console.log("HELLO WORLD");
+	console.log(contact);
 }
 
