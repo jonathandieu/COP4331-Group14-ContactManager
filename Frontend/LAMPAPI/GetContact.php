@@ -13,12 +13,12 @@
         $stmtEmail->execute();
         $resultEmail = $stmtEmail->get_result();
 
-        $stmtLocation = $conn->prepare("SELECT cname,address FROM locations WHERE login=? AND cname =?");
+        $stmtLocation = $conn->prepare("SELECT address FROM locations WHERE login=? AND cname =?");
         $stmtLocation->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtLocation->execute();
         $resultLocation = $stmtLocation->get_result();
 
-        $stmtPhone = $conn->prepare("SELECT cname,number FROM phones WHERE login=? AND cname =?");
+        $stmtPhone = $conn->prepare("SELECT number FROM phones WHERE login=? AND cname =?");
         $stmtPhone->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtPhone->execute();
         $resultPhone = $stmtPhone->get_result();
@@ -26,7 +26,7 @@
 
         if( $rowEmail = $resultEmail->fetch_assoc() || $rowLocation = $resultLocation->fetch_assoc() || $rowPhone = $resultPhone->fetch_assoc()  )
         {
-            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowLocation['address'], $rowPhone['address']);
+            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowLocation['address'], $rowPhone['number']);
         }
         else
         {
@@ -59,7 +59,7 @@
 
     function returnWithInfo( $cname, $email, $location, $phone)
     {
-        $retValue = '{"cname":"' . $cname . '","eaddress":"' . $email . '","laddress":"' . $location . '","paddress":"' . $phone . '","error":""}';
+        $retValue = '{"cname":"' . $cname . '","eaddress":"' . $email . '","laddress":"' . $location . '","number":"' . $phone . '","error":""}';
         sendResultInfoAsJson( $retValue );
     }
 ?>
