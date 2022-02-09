@@ -52,7 +52,7 @@
         // Locations
         if (strlen($laddress) > 0)
         {
-			if (strcmp($ltype,"") == 0)
+			if (strlen($ltype) == 0)
 				$ltype = "Home";
             $stmt = $conn->prepare("INSERT into locations (login,cname,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $ltype, $laddress);
