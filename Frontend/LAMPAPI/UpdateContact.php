@@ -41,7 +41,7 @@
         $stmt->close();
 
         // phone
-        if (strcmp($ptype,"") == 0)
+        if (strlen($ptype) == 0)
 				$ptype = "Home";
         $stmt = $conn->prepare("UPDATE phones SET number=?, type=? WHERE login=? AND cname=?");
         $stmt->bind_param("ssss", $paddress, $ptype, $login, $cname);
