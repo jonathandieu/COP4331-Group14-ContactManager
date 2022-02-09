@@ -14,10 +14,24 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
-    
+
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
+            getContacts(0, "_");
+
+            let input = document.getElementById("searchField");
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
+                    const field = fieldValues[document.querySelector('input[name="search"]:checked').value];
+                    const look = input.value;
+
+                    getContacts(field, look);
+                }
+            });
+
         }, false);
     </script>
 
@@ -50,8 +64,30 @@
                 <!--Container for the search and add, which also have their own containers-->
                 <div class="container-fluid bg-warning p-0">
                     <div class="container-fluid form-outline py-3">
-                        <input type="search" id="form1" class="form-control shadow-none" placeholder="Search..."
+                        <input type="search" id="searchField" class="form-control shadow-none" placeholder="Search..."
                             aria-label="Search" />
+
+                        <div class="d-flex justify-content-around align-items-center px-5 py-2">
+                            <div>
+                                <input type="radio" id="cname" name="search" value="cname" checked>
+                                <label for="cname">Full Name</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" id="email" name="search" value="email">
+                                <label for="email">Email</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" id="phone" name="search" value="phone">
+                                <label for="phone">Phone</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" id="location" name="search" value="location">
+                                <label for="location">Location</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="container-fluid p-0">
@@ -62,13 +98,9 @@
                 </div>
 
                 <div class="container-fluid p-0">
-                    <table class="bg-light w-100 text-center">
-                        <tr>
-                            <td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">example contact name</td>
-                        </tr>
+                    <table class="w-100 text-center" id="contactList">
                     </table>
                 </div>
-
             </div>
 
             <div class="col bg-light">
@@ -76,26 +108,31 @@
                 <div class="container h-100">
 
                     <div class="h-100 d-flex justify-content-center align-items-center px-2 d-none" id="addContact">
-                        <form class="form-horizontal form-group p-5 w-100 requires-validation" id="addContactForm" novalidate>
+                        <form class="form-horizontal form-group p-5 w-100 requires-validation" id="addContactForm"
+                            novalidate>
 
                             <h1 class="text-center display-2 mb-4">Add your Contact</h1>
                             <div class="row pt-5 mb-3 fs-5">
                                 <div class="col">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="First name" id="contactfName" required>
+                                    <input type="text" class="form-control" placeholder="First name" id="contactfName"
+                                        required>
                                     <div class="invalid-feedback"><small>This field is required</small></div>
                                 </div>
                                 <div class="col">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Last name" id="contactlName" required>
+                                    <input type="text" class="form-control" placeholder="Last name" id="contactlName"
+                                        required>
                                     <div class="invalid-feedback"><small>This field is required</small></div>
                                 </div>
                             </div>
                             <div class="row mb-3 fs-5">
                                 <div class="col">
                                     <label for="phoneNumber">Phone Number:</label>
-                                    <input type="tel" class="form-control" placeholder="1234567890" minlength="10" maxlength="10" id="phoneNumber" pattern="\d*">
-                                    <div class="invalid-feedback"><small>Enter a valid phone number (Format: 1234567890)</small></div>
+                                    <input type="tel" class="form-control" placeholder="1234567890" minlength="10"
+                                        maxlength="10" id="phoneNumber" pattern="\d*">
+                                    <div class="invalid-feedback"><small>Enter a valid phone number (Format:
+                                            1234567890)</small></div>
                                 </div>
                                 <div class="col-2">
                                     <label for="ptype">Type:</label>
