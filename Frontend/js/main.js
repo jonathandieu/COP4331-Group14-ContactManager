@@ -322,7 +322,7 @@ function getContact(contact) {
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 
-				console.log(jsonObject.number);
+				console.log(typeof jsonObject.number);
 
 				if (jsonObject.number === undefined || jsonObject.number === null) {
 					document.getElementById("contactPhone").classList.add("d-none");
