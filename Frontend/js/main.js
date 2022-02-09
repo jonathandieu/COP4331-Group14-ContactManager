@@ -282,7 +282,7 @@ function getContacts(field, look) {
 				}
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
 					return `<tr>
-						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact(${contact});">${contact}</td>
+						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact(contact);">${contact}</td>
 					</tr>
 					`;
 				}).join('');
