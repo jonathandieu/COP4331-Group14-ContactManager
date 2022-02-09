@@ -8,17 +8,17 @@
     }
     else
     {
-        $stmtEmail = $conn->prepare("SELECT cname,address,etype FROM emails WHERE login=? AND cname =?");
+        $stmtEmail = $conn->prepare("SELECT cname,address,type FROM emails WHERE login=? AND cname =?");
         $stmtEmail->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtEmail->execute();
         $resultEmail = $stmtEmail->get_result();
 
-        $stmtLocation = $conn->prepare("SELECT address,ltype FROM locations WHERE login=? AND cname =?");
+        $stmtLocation = $conn->prepare("SELECT address,type FROM locations WHERE login=? AND cname =?");
         $stmtLocation->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtLocation->execute();
         $resultLocation = $stmtLocation->get_result();
 
-        $stmtPhone = $conn->prepare("SELECT number,ptype FROM phones WHERE login=? AND cname =?");
+        $stmtPhone = $conn->prepare("SELECT number,type FROM phones WHERE login=? AND cname =?");
         $stmtPhone->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtPhone->execute();
         $resultPhone = $stmtPhone->get_result();
@@ -29,7 +29,7 @@
 
         if( $rowEmail || $rowLocation || $rowPhone )
         {
-            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['etype'], $rowLocation['address'], $rowLocation['ltype'], $rowPhone['number'], $rowEmail['ptype']);
+            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['type'], $rowLocation['address'], $rowLocation['type'], $rowPhone['number'], $rowEmail['type']);
         }
         else
         {
