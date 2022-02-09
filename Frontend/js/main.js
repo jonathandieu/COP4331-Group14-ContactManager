@@ -253,6 +253,23 @@ function readCookie() {
 	document.getElementById("fullname").innerHTML = fullName;
 }
 
+function deleteCookie() {
+	// Set the value of expires to a date that's already passed.
+	document.cookie = "fullName= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+	document.cookie = "login= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+
+}
+
+function setMessage(formElement, message) {
+	const messageElement = formElement.querySelector(".message");
+
+	messageElement.textContent = message;
+}
+
+function handleLogout() {
+	deleteCookie();
+	window.location.href = "index.html";
+}
 function getContacts(field, look) {
 	const jsonPayload = JSON.stringify({
 		login: username,
@@ -327,6 +344,8 @@ function getContact(contact) {
 					document.getElementById("contactPhoneLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactPhone").innerHTML = jsonObject.number;
+					document.getElementById("contactPhone").classList.remove("d-none");
+					document.getElementById("contactPhoneLabel").classList.remove("d-none");					
 				}
 
 				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype === "") {
@@ -334,6 +353,8 @@ function getContact(contact) {
 					document.getElementById("contactPhoneTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
+					document.getElementById("contactPhoneType").classList.remove("d-none");
+					document.getElementById("contactPhoneTypeLabel").classList.remove("d-none");					
 				}
 
 				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress === "") {
@@ -341,6 +362,8 @@ function getContact(contact) {
 					document.getElementById("contactEmailLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
+					document.getElementById("contactEmail").classList.remove("d-none");
+					document.getElementById("contactEmailLabel").classList.remove("d-none");					
 				}
 
 				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype === "") {
@@ -348,6 +371,8 @@ function getContact(contact) {
 					document.getElementById("contactEmailTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
+					document.getElementById("contactEmailType").classList.remove("d-none");
+					document.getElementById("contactEmailTypeLabel").classList.remove("d-none");					
 				}
 
 				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress === "") {
@@ -355,6 +380,8 @@ function getContact(contact) {
 					document.getElementById("contactAddressLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
+					document.getElementById("contactAddress").classList.remove("d-none");
+					document.getElementById("contactAddressLabel").classList.remove("d-none");					
 				}
 
 				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype === "") {
@@ -362,11 +389,14 @@ function getContact(contact) {
 					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
+					document.getElementById("contactAddressType").classList.remove("d-none");
+					document.getElementById("contactAddressTypeLabel").classList.remove("d-none");					
 				}
 			}
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
+		// Error Handling
 	}	
 }
 
