@@ -33,7 +33,9 @@
             returnWithError("No Records Found");
         }
 
-        $stmt->close();
+        $stmtEmail->close();
+        $stmtLocation->close();
+        $stmtPhone->close();
         $conn->close();
 
     }
