@@ -23,8 +23,11 @@
         $stmtPhone->execute();
         $resultPhone = $stmtPhone->get_result();
 
+        $rowEmail = $resultEmail->fetch_assoc();
+        $rowLocation = $resultLocation->fetch_assoc();
+        $rowPhone = $resultPhone->fetch_assoc();
 
-        if( $rowEmail = $resultEmail->fetch_assoc() || $rowLocation = $resultLocation->fetch_assoc() || $rowPhone = $resultPhone->fetch_assoc()  )
+        if( $rowEmail || $rowLocation || $rowPhone )
         {
             returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowLocation['address'], $rowPhone['number']);
         }
