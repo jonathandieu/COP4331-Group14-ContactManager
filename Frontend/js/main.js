@@ -322,8 +322,12 @@ function getContact(contact) {
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 				document.getElementById("contactPhone").innerHTML = jsonObject.number;
+								document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
+
 				document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
+				document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
 				document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
+				document.getElementById("contactAddressType").innerHTML = jsonObject.ltype;
 
 			}
 		};
