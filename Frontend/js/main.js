@@ -383,7 +383,7 @@ function getContact(contact) {
 					document.getElementById("contactAddressType").classList.add("d-none");
 					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
 				} else {
-					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
+					document.getElementById("contactAddressType").innerHTML = jsonObject.ltype;
 					document.getElementById("contactAddressType").classList.remove("d-none");
 					document.getElementById("contactAddressTypeLabel").classList.remove("d-none");					
 				}
