@@ -330,15 +330,39 @@ function getContact(contact) {
 				}
 
 				if (jsonObject.ptype === undefined || jsonObject.ptype === null) {
-					
+					document.getElementById("contactPhoneType").classList.add("d-none");
+					document.getElementById("contactPhoneTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
+				}
+				
+				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null) {
+					document.getElementById("contactEmail").classList.add("d-none");
+					document.getElementById("contactEmailLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
 				}
 
-				document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
-				document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
-				document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
-				document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
-				document.getElementById("contactAddressType").innerHTML = jsonObject.ltype;
+				if (jsonObject.etype === undefined || jsonObject.etype === null) {
+					document.getElementById("contactEmailType").classList.add("d-none");
+					document.getElementById("contactEmailTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
+				}
 
+				if (jsonObject.laddress === undefined || jsonObject.laddress === null) {
+					document.getElementById("contactAddress").classList.add("d-none");
+					document.getElementById("contactAddressLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
+				}
+
+				if (jsonObject.ltype === undefined || jsonObject.ltype === null) {
+					document.getElementById("contactAddressType").classList.add("d-none");
+					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
+				}
 			}
 		};
 		xhr.send(jsonPayload);
