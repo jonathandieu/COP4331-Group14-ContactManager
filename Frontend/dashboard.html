@@ -15,8 +15,8 @@
         crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 
-
-    <script type="text/javascript">
+    <!--
+            <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             readCookie();
             getContacts(0, "_");
@@ -36,6 +36,7 @@
         }, false);
     </script>
 
+    -->
 
 </head>
 
@@ -175,10 +176,10 @@
                         </form>
                     </div>
 
-                    <div class="h-100 d-flex justify-content-center align-items-center d-none" id="contactInfo">
+                    <div class="h-100 d-flex justify-content-center align-items-center " id="contactInfo">
                         <!--Contact information-->
                         <div class="text-center w-75 container-fluid">
-                            <p class="display-1 border-dark border-bottom mb-5" id="contactName"></p>
+                            <p class="display-1 border-dark border-bottom mb-5" id="contactName"><img src="./images/trash.png" width="40" height="40" alt="Delete Contact" class="trashIcon" onmouseover="this.src='./images/trash_open.png';" onmouseout="this.src='./images/trash.png';"></p>
 
 
                             <div class="row fs-5">
