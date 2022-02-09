@@ -295,12 +295,138 @@ function getContacts(field, look) {
 					return;
 				}
 				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
-					return `<span class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${contact}</span>`;
+					return `<span class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact(this.innerHTML);">${contact}</span>`;
 				}).join('');
 			}
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
 		document.getElementById("contactList").innerHTML = err.message;
+	}
+}
+
+function getContact(contact) {
+	const jsonPayload = JSON.stringify({
+		login: username,
+		cname: contact
+	});
+
+	const url = urlBase + "/GetContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				error = jsonObject.error;
+
+				if (error != "") {
+					return;
+				}
+
+				document.getElementById("contactInfo").classList.remove("d-none");
+				document.getElementById("addContact").classList.add("d-none");
+
+				document.getElementById("contactName").innerHTML = jsonObject.cname;
+
+				if (jsonObject.number === undefined || jsonObject.number === null || jsonObject.number === "") {
+					document.getElementById("contactPhone").classList.add("d-none");
+					document.getElementById("contactPhoneLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactPhone").innerHTML = jsonObject.number;
+					document.getElementById("contactPhone").classList.remove("d-none");
+					document.getElementById("contactPhoneLabel").classList.remove("d-none");					
+				}
+
+				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype === "") {
+					document.getElementById("contactPhoneType").classList.add("d-none");
+					document.getElementById("contactPhoneTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
+					document.getElementById("contactPhoneType").classList.remove("d-none");
+					document.getElementById("contactPhoneTypeLabel").classList.remove("d-none");					
+				}
+
+				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress === "") {
+					document.getElementById("contactEmail").classList.add("d-none");
+					document.getElementById("contactEmailLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
+					document.getElementById("contactEmail").classList.remove("d-none");
+					document.getElementById("contactEmailLabel").classList.remove("d-none");					
+				}
+
+				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype === "") {
+					document.getElementById("contactEmailType").classList.add("d-none");
+					document.getElementById("contactEmailTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
+					document.getElementById("contactEmailType").classList.remove("d-none");
+					document.getElementById("contactEmailTypeLabel").classList.remove("d-none");					
+				}
+
+				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress === "") {
+					document.getElementById("contactAddress").classList.add("d-none");
+					document.getElementById("contactAddressLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
+					document.getElementById("contactAddress").classList.remove("d-none");
+					document.getElementById("contactAddressLabel").classList.remove("d-none");					
+				}
+
+				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype === "") {
+					document.getElementById("contactAddressType").classList.add("d-none");
+					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
+					document.getElementById("contactAddressType").classList.remove("d-none");
+					document.getElementById("contactAddressTypeLabel").classList.remove("d-none");					
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		// Error Handling
+	}	
+}
+
+function deleteContact() {
+
+	// Should probably make it so that it asks if the user is sure before deletion,
+	// just thought we should try and make the actual function work first
+
+	const name = document.getElementById("cname").value.trim();
+
+	const jsonPayload = JSON.stringify({
+		field: 0,
+		cname: name,
+		login: username,
+	});
+
+	const url = urlBase + "/Delete." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				error = jsonObject.error;
+
+				if (error != "") {
+					document.getElementById("deleteResult").innerHTML =
+						"An error has occured. Try again.";
+					return;
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		document.getElementById("deleteResult").innerHTML = err.message;
 	}
 }
