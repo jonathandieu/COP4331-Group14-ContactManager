@@ -290,7 +290,7 @@ function getContacts(field, look) {
 						getContact(contact);
 					}
 
-					tableRow.appendChild(tableData);
+					tableRow.innerHTML = tableData;
 
 					return tableRow;
 				}).join('');
