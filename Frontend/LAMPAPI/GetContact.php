@@ -8,17 +8,17 @@
     }
     else
     {
-        $stmtEmail = $conn->prepare("SELECT cname,address FROM emails WHERE login=? AND cname =?");
+        $stmtEmail = $conn->prepare("SELECT cname,address,etype FROM emails WHERE login=? AND cname =?");
         $stmtEmail->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtEmail->execute();
         $resultEmail = $stmtEmail->get_result();
 
-        $stmtLocation = $conn->prepare("SELECT address FROM locations WHERE login=? AND cname =?");
+        $stmtLocation = $conn->prepare("SELECT address,ltype FROM locations WHERE login=? AND cname =?");
         $stmtLocation->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtLocation->execute();
         $resultLocation = $stmtLocation->get_result();
 
-        $stmtPhone = $conn->prepare("SELECT number FROM phones WHERE login=? AND cname =?");
+        $stmtPhone = $conn->prepare("SELECT number,ptype FROM phones WHERE login=? AND cname =?");
         $stmtPhone->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtPhone->execute();
         $resultPhone = $stmtPhone->get_result();
@@ -29,7 +29,7 @@
 
         if( $rowEmail || $rowLocation || $rowPhone )
         {
-            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowLocation['address'], $rowPhone['number']);
+            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['etype'], $rowLocation['address'], $rowLocation['ltype'], $rowPhone['number'], $rowEmail['ptype'],);
         }
         else
         {
@@ -60,9 +60,9 @@
         sendResultInfoAsJson( $retValue );
     }
 
-    function returnWithInfo( $cname, $email, $location, $phone)
+    function returnWithInfo( $cname, $email, $etype, $location, $ltype, $phone, $ptype)
     {
-        $retValue = '{"cname":"' . $cname . '","eaddress":"' . $email . '","laddress":"' . $location . '","number":"' . $phone . '","error":""}';
+        $retValue = '{"cname":"' . $cname . '","eaddress":"' . $email . '","etype":"' . $etype . '","laddress":"' . $location . '","ltype":"' . $ltype . '","number":"' . $phone . '","ptype":"' . $ptype . '","error":""}';
         sendResultInfoAsJson( $retValue );
     }
 ?>
