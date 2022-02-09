@@ -50,8 +50,8 @@
 
         // locations
         if (strlen($ltype) == 0)
-				$ltype = "Home";
-        $stmt = $conn->prepare("UPDATE loctions SET address=?, type=? WHERE login=? AND cname=?");
+				  $ltype = "Home";
+        $stmt = $conn->prepare("UPDATE locations SET address=?, type=? WHERE login=? AND cname=?");
         $stmt->bind_param("ssss", $laddress, $ltype, $login, $cname);
         $stmt->execute();
         $stmt->close();
