@@ -43,6 +43,9 @@
         <div class="container-fluid">
             <span class="navbar-brand"><img src="./images/favicon.png" width="30" height="30" alt="YellaBook logo"
                     class="d-line-block  align-top mx-2">YellaBook!</span>
+            <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <ul class="navbar-nav">
@@ -50,7 +53,8 @@
                     <a class="btn btn-mangodark nav-link dropdown-toggle shadow-none" data-bs-toggle="dropdown" href="#"
                         id="fullname"></a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <button type="button" class="btn btn-warning w-100 mt-1" onclick="handleLogout();">Log
+                            out!</button>
                     </div>
                 </li>
             </ul>
