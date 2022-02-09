@@ -253,6 +253,23 @@ function readCookie() {
 	document.getElementById("fullname").innerHTML = fullName;
 }
 
+function deleteCookie() {
+	// Set the value of expires to a date that's already passed.
+	document.cookie = "fullName= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+	document.cookie = "login= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+
+}
+
+function setMessage(formElement, message) {
+	const messageElement = formElement.querySelector(".message");
+
+	messageElement.textContent = message;
+}
+
+function handleLogout() {
+	deleteCookie();
+	window.location.href = "index.html";
+}
 function getContacts(field, look) {
 	const jsonPayload = JSON.stringify({
 		login: username,
@@ -379,6 +396,7 @@ function getContact(contact) {
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
+		// Error Handling
 	}	
 }
 

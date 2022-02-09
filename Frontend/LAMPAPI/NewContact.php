@@ -23,8 +23,8 @@
 		$stmt->bind_param("ss", $login, $cname);
 		$stmt->execute();
         $stmt->close();
-      
-		
+
+
 		// Emails
 		//length
         if (strlen($eaddress) > 0)
@@ -37,29 +37,29 @@
 	    	$stmt->close();
 			$ret = $eaddress;
         }
-		
+
     	// Phones
         if (($paddress) > 0)
         {
 			if (strcmp($ptype,"") == 0)
-				$etype = "Home";
+				$ptype = "Home";
             $stmt = $conn->prepare("INSERT into phones (login,cname,type,number) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $ptype, $paddress);
 	        $stmt->execute();
 	        $stmt->close();
         }
-		
+
         // Locations
         if (strlen($laddress) > 0)
         {
 			if (strcmp($ltype,"") == 0)
-			$etype = "Home";
+				$ltype = "Home";
             $stmt = $conn->prepare("INSERT into locations (login,cname,type,address) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $login, $cname, $ltype, $laddress);
 	    	$stmt->execute();
 	    	$stmt->close();
         }
-        
+
 		$conn->close();
 		returnWithError("");
 	}
