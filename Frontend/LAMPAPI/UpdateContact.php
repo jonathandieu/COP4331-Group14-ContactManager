@@ -32,29 +32,29 @@
 		$stmt->execute();
         $stmt->close();
 
-        // email
-        if (strcmp($etype,"") == 0)
-				$etype = "Home";
-        $stmt = $conn->prepare("UPDATE emails SET address=?, type=? WHERE login=? AND cname=?");
-        $stmt->bind_param("ssss", $eaddress, $etype, $login, $cname);
-        $stmt->execute();
-        $stmt->close();
+        // // email
+        // if (strcmp($etype,"") == 0)
+				// $etype = "Home";
+        // $stmt = $conn->prepare("UPDATE emails SET address=?, type=? WHERE login=? AND cname=?");
+        // $stmt->bind_param("ssss", $eaddress, $etype, $login, $cname);
+        // $stmt->execute();
+        // $stmt->close();
 
-        // phone
-        if (strlen($ptype) == 0)
-				$ptype = "Home";
-        $stmt = $conn->prepare("UPDATE phones SET number=?, type=? WHERE login=? AND cname=?");
-        $stmt->bind_param("ssss", $paddress, $ptype, $login, $cname);
-        $stmt->execute();
-        $stmt->close();
+        // // phone
+        // if (strlen($ptype) == 0)
+				// $ptype = "Home";
+        // $stmt = $conn->prepare("UPDATE phones SET number=?, type=? WHERE login=? AND cname=?");
+        // $stmt->bind_param("ssss", $paddress, $ptype, $login, $cname);
+        // $stmt->execute();
+        // $stmt->close();
 
-        // locations
-        if (strlen($ltype) == 0)
-				$ltype = "Home";
-        $stmt = $conn->prepare("UPDATE loctions SET address=?, type=? WHERE login=? AND cname=?");
-        $stmt->bind_param("ssss", $laddress, $ltype, $login, $cname);
-        $stmt->execute();
-        $stmt->close();
+        // // locations
+        // if (strlen($ltype) == 0)
+				// $ltype = "Home";
+        // $stmt = $conn->prepare("UPDATE loctions SET address=?, type=? WHERE login=? AND cname=?");
+        // $stmt->bind_param("ssss", $laddress, $ltype, $login, $cname);
+        // $stmt->execute();
+        // $stmt->close();
 
 
         $conn->close();
