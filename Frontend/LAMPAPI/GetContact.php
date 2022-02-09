@@ -16,12 +16,12 @@
         $stmtLocation = $conn->prepare("SELECT cname,address FROM locations WHERE login=? AND cname =?");
         $stmtLocation->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtLocation->execute();
-        $resultLocation = $stmt->get_result();
+        $resultLocation = $stmtLocation->get_result();
 
         $stmtPhone = $conn->prepare("SELECT cname,number FROM phones WHERE login=? AND cname =?");
         $stmtPhone->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtPhone->execute();
-        $resultPhone = $stmt->get_result();
+        $resultPhone = $stmtPhone->get_result();
 
 
         if( $rowEmail = $resultEmail->fetch_assoc() && $rowLocation = $resultLocation->fetch_assoc() && $rowPhone = $resultPhone->fetch_assoc()  )
