@@ -161,6 +161,8 @@ function readCookie() {
 function deleteCookie() {
 	// Set the value of expires to a date that's already passed.
 	document.cookie = "fullName= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+	document.cookie = "login= ;expires= Thu, 01 Jan 1969 00:00:00 GMT";
+
 }
 
 function setMessage(formElement, message) {
@@ -170,7 +172,6 @@ function setMessage(formElement, message) {
 }
 
 function handleLogout() {
-	// Log the user out, let them know when they've done so successfully, and remove their cookies.
-	alert("Log out is totally happening rn!");
 	deleteCookie();
+	window.location.href = "index.html";
 }
