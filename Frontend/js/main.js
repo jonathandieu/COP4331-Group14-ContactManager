@@ -321,9 +321,19 @@ function getContact(contact) {
 				document.getElementById("addContact").classList.add("d-none");
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
-				document.getElementById("contactPhone").innerHTML = jsonObject.number;
-								document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
 
+				if (jsonObject.number === undefined || jsonObject.number === null) {
+					document.getElementById("contactPhone").classList.add("d-none");
+					document.getElementById("contactPhoneLabel").classList.add("d-none");
+				} else {
+					document.getElementById("contactPhone").innerHTML = jsonObject.number;
+				}
+
+				if (jsonObject.ptype === undefined || jsonObject.ptype === null) {
+					
+				}
+
+				document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
 				document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
 				document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
 				document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
