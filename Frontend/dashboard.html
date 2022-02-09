@@ -15,6 +15,22 @@
         crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
 
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            readCookie();
+            getContacts(0, "_");
+            let input = document.getElementById("searchField");
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    const fieldValues = {"cname": 0, "email": 1, "phone": 2, "location": 3};
+                    const field = fieldValues[document.querySelector('input[name="search"]:checked').value];
+                    const look = input.value;
+                    getContacts(field, look);
+                }
+            });
+        }, false);
+    </script>
 
 </head>
 
