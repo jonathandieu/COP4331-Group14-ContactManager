@@ -291,18 +291,11 @@ function getContacts(field, look) {
 				error = jsonObject.error;
 
 				if (error != "") {
-					document.getElementById("contactList").innerHTML = `<tr>
-						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${error}</td>
-					</tr>
-					`;
+					document.getElementById("contactList").innerHTML = `<span class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0">${error}</span>`;
 					return;
 				}
-
-				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact, index) {
-					return `<tr>
-						<td class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact(this.innerHTML);">${contact}</td>
-					</tr>
-					`;
+				document.getElementById("contactList").innerHTML = jsonObject.results.map(function (contact) {
+					return `<span class="py-3 fs-1 btn btn-alt btn-outline-dark w-100 rounded-0" onclick="getContact(this.innerHTML);">${contact}</span>`;
 				}).join('');
 			}
 		};

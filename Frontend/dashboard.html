@@ -68,7 +68,7 @@
                         <input type="search" id="searchField" class="form-control shadow-none" placeholder="Search..."
                             aria-label="Search" />
 
-                        <div class="d-flex justify-content-around align-items-center px-5 py-2">
+                        <div class="d-flex flex-wrap justify-content-around align-items-center px-5 py-2">
                             <div>
                                 <input type="radio" id="cname" name="search" value="cname" checked>
                                 <label for="cname">Full Name</label>
@@ -93,14 +93,14 @@
 
                     <div class="container-fluid p-0">
                         <button type="button"
-                            class="btn btn-lg btn-block btn-outline-dark shadow-none w-100 border-dark border-right-0 border-left-0 rounded-0"
+                            class="btn btn-lg btn-block btn-outline-dark shadow-none w-100 border-dark border-right-0 border-left-0 rounded-0 mb-4"
                             onclick="showAddForm();">+ Add Contact</button>
                     </div>
                 </div>
 
                 <div class="container-fluid p-0">
-                    <table class="w-100 text-center" id="contactList">
-                    </table>
+                    <div class="w-100 text-center" style="overflow-y: scroll; height: 60vh;" id="contactList">
+                    </div>
                 </div>
             </div>
 
