@@ -106,7 +106,7 @@ function addContact() {
 	const email = document.getElementById("eaddress").value.trim();
 	const emailType = document.getElementById("etype").value.trim();
 	const contactForm = document.getElementById("addContactForm");
-
+	
 	if (firstName === "" && lastName === "") {
 		contactForm.classList.add("was-validated");
 		return;
@@ -122,6 +122,8 @@ function addContact() {
   		ltype: locationType,
 		laddress: location,
 	});
+
+	console.log(jsonPayload);
 
 	const url = urlBase + "/NewContact." + extension;
 
