@@ -101,16 +101,11 @@ function addContact() {
 	const lastName = document.getElementById("contactlName").value.trim();
 	const number = parseInt(document.getElementById("phoneNumber").value.trim());
 	const numberType = document.getElementById("ptype").value.trim();
-	const location = document.getElementById("location").value.trim();
+	const location = document.getElementById("addLocation").value.trim();
 	const locationType = document.getElementById("ltype").value.trim();
 	const email = document.getElementById("eaddress").value.trim();
 	const emailType = document.getElementById("etype").value.trim();
 	const contactForm = document.getElementById("addContactForm");
-	
-	if (firstName === "" && lastName === "") {
-		contactForm.classList.add("was-validated");
-		return;
-	}
 
 	const jsonPayload = JSON.stringify({
 		cname: firstName + " " + lastName,
