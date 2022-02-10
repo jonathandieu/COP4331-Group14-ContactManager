@@ -136,7 +136,7 @@ function addContact() {
 			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
-				location.reload();
+				window.location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -445,7 +445,7 @@ function deleteContact() {
 				}
 
 				document.getElementById("contactInfo").classList.add("d-none");
-				location.reload();
+				window.location.reload();
 			};
 			xhr.send(jsonPayload);
 		} catch (err) {
@@ -497,7 +497,7 @@ function updateContact() {
 				}
 			}
 
-			location.reload();
+			window.location.reload();
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
