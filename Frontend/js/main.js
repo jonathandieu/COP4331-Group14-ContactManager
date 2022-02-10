@@ -225,14 +225,13 @@ function showEditForm() {
 	document.getElementById("addContact").classList.add("d-none");
 	document.getElementById("contactInfo").classList.add("d-none");
 
-	document.getElementById("contactNameEdit").value = document.getElementById("contactName").innerHTML
-	document.getElementById("phoneNumberEdit").value = document.getElementById("contactPhone").innerHTML
-	document.getElementById("ptypeEdit").value = document.getElementById("contactPhoneType").innerHTML
-	document.getElementById("eaddressEdit").value = document.getElementById("contactEmail").innerHTML
-	document.getElementById("etypeEdit").value = document.getElementById("contactEmailType").innerHTML
-	document.getElementById("locationEdit").value =
-document.getElementById("contactAddress").inn document.getElementById("contactAddressType").innerHTMLerHTML
-	document.getElementById("ltypeEdit").value =
+	document.getElementById("contactNameEdit").value = document.getElementById("contactName").innerHTML;
+	document.getElementById("phoneNumberEdit").value = document.getElementById("contactPhone").innerHTML;
+	document.getElementById("ptypeEdit").value = document.getElementById("contactPhoneType").innerHTML;
+	document.getElementById("eaddressEdit").value = document.getElementById("contactEmail").innerHTML;
+	document.getElementById("etypeEdit").value = document.getElementById("contactEmailType").innerHTML;
+	document.getElementById("locationEdit").value = document.getElementById("contactAddress").innerHTML;
+	document.getElementById("ltypeEdit").value = document.getElementById("contactAddressType").innerHTML;
 }
 
 function hideEditForm() {
@@ -496,8 +495,6 @@ function updateContact() {
 						"An error has occured. Try again.";
 					return;
 				}
-			}
-
 			}
 
 			location.reload();
