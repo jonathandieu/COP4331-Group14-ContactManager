@@ -29,7 +29,7 @@
 
         if( $rowEmail || $rowLocation || $rowPhone )
         {
-            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['type'], $rowLocation['address'], $rowLocation['type'], $rowPhone['number'], $rowEmail['type']);
+            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['type'], $rowLocation['address'], $rowLocation['type'], $rowPhone['number'], $rowPhone['type']);
         }
         else
         {
