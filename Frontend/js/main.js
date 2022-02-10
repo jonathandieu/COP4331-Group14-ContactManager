@@ -38,7 +38,6 @@ function handleLogin() {
 						"User/Password combination incorrect";
 					loginInput.classList.add("is-invalid");
 					passInput.classList.add("is-invalid");
-					event.preventDefault();
 					return;
 				}
 
@@ -110,7 +109,6 @@ function addContact() {
 
 	if (firstName === "" && lastName === "") {
 		contactForm.classList.add("was-validated");
-		event.preventDefault();
 		return;
 	}
 	
@@ -167,7 +165,6 @@ function handleRegister() {
 
 	const result = validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
 	if (result == 1) {
-		event.preventDefault();
 		return;
 	}
 
