@@ -173,7 +173,7 @@
                             </div>
                         </form>
                     </div>
-
+                    <!--Edit form-->
                     <div class="h-100 d-flex justify-content-center align-items-center px-2 d-none" id="editContact">
                         <form class="form-horizontal form-group p-5 w-100 requires-validation d-none"
                             id="editContactForm" novalidate>
@@ -181,14 +181,8 @@
                             <h1 class="text-center display-2 mb-4">Edit your Contact</h1>
                             <div class="row pt-5 mb-3 fs-5">
                                 <div class="col">
-                                    <label for="contactfNameEdit">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="First name" id="contactfNameEdit"
-                                        required>
-                                    <div class="invalid-feedback"><small>This field is required</small></div>
-                                </div>
-                                <div class="col">
-                                    <label for="contactlNameEdit">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Last name" id="contactlNameEdit"
+                                    <label for="contactNameEdit">Name:</label>
+                                    <input type="text" class="form-control" placeholder="Name" id="contactNameEdit"
                                         required>
                                     <div class="invalid-feedback"><small>This field is required</small></div>
                                 </div>
@@ -233,7 +227,7 @@
                                 </div>
                                 <div class="col">
                                     <button type="submit" class="btn btn-warning w-100" type="submit"
-                                        onclick="editContact();">Save</button>
+                                        onclick="updateContact();">Save</button>
                                 </div>
                                 <p id="editContactResult" class="text-danger"></p>
                             </div>
@@ -286,7 +280,7 @@
                                 </div>
 
                                 <div class="col mt-5 w-100">
-                                    <button type="button" class="btn btn-outline-dark w-100">Edit</button>
+                                    <button type="button" class="btn btn-outline-dark w-100" onclick="showEditForm()">Edit</button>
                                 </div>
 
                             </div>

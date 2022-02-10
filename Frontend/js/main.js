@@ -56,7 +56,7 @@ function handleLogin() {
 }
 
 function validateForm (form, validSymbols, firstName, lastName, login, password, confirmPassword) {
-	
+
 	let flag = 0;
 
 	if (firstName === "") {
@@ -74,13 +74,13 @@ function validateForm (form, validSymbols, firstName, lastName, login, password,
 		document.getElementById("invalidUser").innerHTML = "Username must be at least 5 characters";
 		flag = 1;
 	}
-	
+
 	if (login.match(/\W/)) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidUser").innerHTML = "Username cannot contain symbols such as %, &, @, etc.";
 		flag = 1;
 	}
-	
+
 	if (password.length < 8) {
 		form.classList.add("was-validated");
 		document.getElementById("invalidPass").innerHTML = "Password must be at least 8 characters";
@@ -111,7 +111,7 @@ function addContact() {
 		contactForm.classList.add("was-validated");
 		return;
 	}
-	
+
 	const jsonPayload = JSON.stringify({
 		cname: firstName + " " + lastName,
 		login: username,
@@ -131,9 +131,9 @@ function addContact() {
 
 	try
 	{
-		xhr.onreadystatechange = function() 
+		xhr.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
 				location.reload();
@@ -145,7 +145,7 @@ function addContact() {
 	{
 		document.getElementById("addContactResult").innerHTML = err.message;
 	}
-	
+
 
 }
 
@@ -210,11 +210,33 @@ function handleRegister() {
 function showAddForm() {
     var element = document.getElementById("addContact");
     element.classList.remove("d-none");
+	document.getElementById("editContact").classList.add("d-none");
 	document.getElementById("contactInfo").classList.add("d-none");
 }
 
 function hideAddForm() {
     var element = document.getElementById("addContact");
+    element.classList.add("d-none");
+}
+
+function showEditForm() {
+    var element = document.getElementById("editContact");
+    element.classList.remove("d-none");
+	document.getElementById("addContact").classList.add("d-none");
+	document.getElementById("contactInfo").classList.add("d-none");
+
+	document.getElementById("contactNameEdit").value = document.getElementById("contactName").innerHTML
+	document.getElementById("phoneNumberEdit").value = document.getElementById("contactPhone").innerHTML
+	document.getElementById("ptypeEdit").value = document.getElementById("contactPhoneType").innerHTML
+	document.getElementById("eaddressEdit").value = document.getElementById("contactEmail").innerHTML
+	document.getElementById("etypeEdit").value = document.getElementById("contactEmailType").innerHTML
+	document.getElementById("locationEdit").value =
+document.getElementById("contactAddress").inn document.getElementById("contactAddressType").innerHTMLerHTML
+	document.getElementById("ltypeEdit").value =
+}
+
+function hideEditForm() {
+    var element = document.getElementById("editContact");
     element.classList.add("d-none");
 }
 
@@ -328,6 +350,7 @@ function getContact(contact) {
 
 				document.getElementById("contactInfo").classList.remove("d-none");
 				document.getElementById("addContact").classList.add("d-none");
+				document.getElementById("editContact").classList.add("d-none");
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 
@@ -337,7 +360,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactPhone").innerHTML = jsonObject.number;
 					document.getElementById("contactPhone").classList.remove("d-none");
-					document.getElementById("contactPhoneLabel").classList.remove("d-none");					
+					document.getElementById("contactPhoneLabel").classList.remove("d-none");
 				}
 
 				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype.trim() === "") {
@@ -346,7 +369,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactPhoneType").innerHTML = jsonObject.ptype;
 					document.getElementById("contactPhoneType").classList.remove("d-none");
-					document.getElementById("contactPhoneTypeLabel").classList.remove("d-none");					
+					document.getElementById("contactPhoneTypeLabel").classList.remove("d-none");
 				}
 
 				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress.trim() === "") {
@@ -355,7 +378,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
 					document.getElementById("contactEmail").classList.remove("invisible");
-					document.getElementById("contactEmailLabel").classList.remove("invisible");					
+					document.getElementById("contactEmailLabel").classList.remove("invisible");
 				}
 
 				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype.trim() === "") {
@@ -364,7 +387,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
 					document.getElementById("contactEmailType").classList.remove("invisible");
-					document.getElementById("contactEmailTypeLabel").classList.remove("invisible");					
+					document.getElementById("contactEmailTypeLabel").classList.remove("invisible");
 				}
 
 				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress.trim() === "") {
@@ -373,7 +396,7 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
 					document.getElementById("contactAddress").classList.remove("invisible");
-					document.getElementById("contactAddressLabel").classList.remove("invisible");					
+					document.getElementById("contactAddressLabel").classList.remove("invisible");
 				}
 
 				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype.trim() === "") {
@@ -382,14 +405,14 @@ function getContact(contact) {
 				} else {
 					document.getElementById("contactAddressType").innerHTML = jsonObject.ltype;
 					document.getElementById("contactAddressType").classList.remove("invisible");
-					document.getElementById("contactAddressTypeLabel").classList.remove("invisible");					
+					document.getElementById("contactAddressTypeLabel").classList.remove("invisible");
 				}
 			}
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
 		// Error Handling
-	}	
+	}
 }
 
 function deleteContact() {
@@ -429,5 +452,58 @@ function deleteContact() {
 		} catch (err) {
 			document.getElementById("deleteResult").innerHTML = err.message;
 		}
+	}
+}
+
+function updateContact() {
+
+	const oldname = document.getElementById("contactName").innerHTML.trim();
+
+	const newName = document.getElementById("contactNameEdit").value.trim();
+	const ptype = document.getElementById("ptypeEdit").value.trim();
+	const eaddress = document.getElementById("eaddressEdit").value.trim();
+	const etype = document.getElementById("etypeEdit").value.trim();
+	const number = document.getElementById("phoneNumberEdit").value.trim();
+	const ltype = document.getElementById("ltypeEdit").value.trim();
+	const location = document.getElementById("locationEdit").value.trim();
+
+	const jsonPayload = JSON.stringify({
+		login: username,
+		oldcname: oldname,
+		cname: newName,
+		etype: etype,
+		eaddress: eaddress,
+		ptype: ptype,
+		number: number,
+		ltype: ltype,
+		laddress: location,
+	});
+
+	const url = urlBase + "/UpdateContact." + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				error = jsonObject.error;
+
+				if (error != "") {
+					document.getElementById("editContactResult").innerHTML =
+						"An error has occured. Try again.";
+					return;
+				}
+			}
+
+			}
+
+			location.reload();
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		document.getElementById("editContactResult").innerHTML = err.message;
 	}
 }
