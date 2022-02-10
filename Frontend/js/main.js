@@ -420,6 +420,7 @@ function deleteContact() {
 				error = jsonObject.error;
 
 				if (error != "") {
+					console.log("TEST");
 					document.getElementById("deleteResult").innerHTML =
 						"An error has occured. Try again.";
 					return;
@@ -428,6 +429,7 @@ function deleteContact() {
 
 			document.getElementById("contactInfo").classList.add("d-none");
 			location.reload();
+			console.log("TEST2");
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
