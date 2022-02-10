@@ -118,8 +118,6 @@ function addContact() {
 		laddress: location,
 	});
 
-	console.log(jsonPayload);
-
 	const url = urlBase + "/NewContact." + extension;
 
 	let xhr = new XMLHttpRequest();
@@ -474,6 +472,8 @@ function updateContact() {
 		ltype: ltype,
 		laddress: location,
 	});
+
+	console.log(jsonPayload);
 
 	const url = urlBase + "/UpdateContact." + extension;
 
