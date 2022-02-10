@@ -8,6 +8,7 @@
     }
     else
     {
+        
         $stmtEmail = $conn->prepare("SELECT cname,address,type FROM emails WHERE login=? AND cname =?");
         $stmtEmail->bind_param("ss", $inData["login"], $inData["cname"]);
         $stmtEmail->execute();
@@ -29,7 +30,7 @@
 
         if( $rowEmail || $rowLocation || $rowPhone )
         {
-            returnWithInfo( $rowEmail['cname'], $rowEmail['address'], $rowEmail['type'], $rowLocation['address'], $rowLocation['type'], $rowPhone['number'], $rowPhone['type']);
+            returnWithInfo( $inData["cname"], $rowEmail['address'], $rowEmail['type'], $rowLocation['address'], $rowLocation['type'], $rowPhone['number'], $rowEmail['type']);
         }
         else
         {
