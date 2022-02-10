@@ -394,41 +394,40 @@ function getContact(contact) {
 
 function deleteContact() {
 
-	// Should probably make it so that it asks if the user is sure before deletion,
-	// just thought we should try and make the actual function work first
+	if (window.confirm("Are you sure you want to delete this contact?")) {
+		const name = document.getElementById("contactName").innerHTML.trim();
 
-	const name = document.getElementById("contactName").innerHTML.trim();
+		const jsonPayload = JSON.stringify({
+			field: 0,
+			cname: name,
+			login: username,
+		});
 
-	const jsonPayload = JSON.stringify({
-		field: 0,
-		cname: name,
-		login: username,
-	});
+		const url = urlBase + "/Delete." + extension;
 
-	const url = urlBase + "/Delete." + extension;
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try {
+			xhr.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					let jsonObject = JSON.parse(xhr.responseText);
+					error = jsonObject.error;
 
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				let jsonObject = JSON.parse(xhr.responseText);
-				error = jsonObject.error;
-
-				if (error != "") {
-					document.getElementById("deleteResult").innerHTML =
-						"An error has occured. Try again.";
-					return;
+					if (error != "") {
+						document.getElementById("deleteResult").innerHTML =
+							"An error has occured. Try again.";
+						return;
+					}
 				}
-			}
 
-			document.getElementById("contactInfo").classList.add("d-none");
-			location.reload();
-		};
-		xhr.send(jsonPayload);
-	} catch (err) {
-		document.getElementById("deleteResult").innerHTML = err.message;
+				document.getElementById("contactInfo").classList.add("d-none");
+				location.reload();
+			};
+			xhr.send(jsonPayload);
+		} catch (err) {
+			document.getElementById("deleteResult").innerHTML = err.message;
+		}
 	}
 }
