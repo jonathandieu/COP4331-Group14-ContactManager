@@ -136,6 +136,7 @@ function addContact() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
+				location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
