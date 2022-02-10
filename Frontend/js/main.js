@@ -272,11 +272,9 @@ function handleLogout() {
 function getContacts(field, look) {
 	const jsonPayload = JSON.stringify({
 		login: username,
-		field: 0,
+		field: field,
 		look: "%" + look + "%",
 	});
-
-	console.log(jsonPayload);
 
 
 	const url = urlBase + "/SearchContact." + extension;
