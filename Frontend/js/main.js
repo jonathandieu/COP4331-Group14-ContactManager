@@ -276,6 +276,8 @@ function getContacts(field, look) {
 		look: "%" + look + "%",
 	});
 
+	console.log(jsonPayload);
+
 
 	const url = urlBase + "/SearchContact." + extension;
 
