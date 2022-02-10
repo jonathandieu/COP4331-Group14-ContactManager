@@ -399,7 +399,7 @@ function deleteContact() {
 	// Should probably make it so that it asks if the user is sure before deletion,
 	// just thought we should try and make the actual function work first
 
-	const name = document.getElementById("cname").value.trim();
+	const name = document.getElementById("contactName").value.trim();
 
 	const jsonPayload = JSON.stringify({
 		field: 0,
