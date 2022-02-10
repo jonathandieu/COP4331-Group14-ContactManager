@@ -230,9 +230,8 @@ function showEditForm() {
 	document.getElementById("ptypeEdit").value = document.getElementById("contactPhoneType").innerHTML
 	document.getElementById("eaddressEdit").value = document.getElementById("contactEmail").innerHTML
 	document.getElementById("etypeEdit").value = document.getElementById("contactEmailType").innerHTML
-	document.getElementById("locationEdit").value =
-document.getElementById("contactAddress").inn document.getElementById("contactAddressType").innerHTMLerHTML
-	document.getElementById("ltypeEdit").value =
+	document.getElementById("locationEdit").value = document.getElementById("contactAddress").innerHTML
+	document.getElementById("ltypeEdit").value = document.getElementById("contactAddressType").innerHTML
 }
 
 function hideEditForm() {
