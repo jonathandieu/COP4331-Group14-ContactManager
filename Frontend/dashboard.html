@@ -109,8 +109,8 @@
                 <div class="container h-100">
 
                     <div class="h-100 d-flex justify-content-center align-items-center px-2 d-none" id="addContact">
-                        <form class="form-horizontal form-group p-5 w-100 requires-validation d-none"
-                            id="addContactForm" novalidate>
+                        <form class="form-horizontal form-group p-5 w-100 requires-validation" id="addContactForm"
+                            novalidate>
 
                             <h1 class="text-center display-2 mb-4">Add your Contact</h1>
                             <div class="row pt-5 mb-3 fs-5">
@@ -162,11 +162,11 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-outline-dark w-100" type="submit"
+                                    <button type="button" class="btn btn-outline-dark w-100"
                                         onclick="hideAddForm();">Cancel</button>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-warning w-100" type="submit"
+                                    <button type="button" class="btn btn-warning w-100"
                                         onclick="addContact();">Save</button>
                                 </div>
                                 <p id="addContactResult" class="text-danger"></p>
@@ -174,48 +174,53 @@
                         </form>
                     </div>
 
-                    <div class="h-100 d-flex justify-content-center align-items-center " id="contactInfo">
+                    <div class="h-100 d-flex justify-content-center align-items-center d-none" id="contactInfo">
                         <!--Contact information-->
                         <div class="text-center w-75 container-fluid">
                             <p class="deleteResult"></p>
-                            <p class="display-1 border-dark border-bottom mb-5" id="contactName"><img
-                                    src="./images/trash.png" width="40" height="40" alt="Delete Contact"
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                <p class="display-1 border-dark border-bottom mb-5" id="contactName"
+                                    style="margin-right: 2rem;"></p>
+                                <img src="./images/trash.png" width="40" height="40" alt="Delete Contact"
                                     class="trashIcon" onmouseover="this.src='./images/trash_open.png';"
-                                    onmouseout="this.src='./images/trash.png';" onclick="deleteContact();"></p>
-
-
-                            <div class="row fs-5">
-                                <div class="col">
-                                    <label for="phoneNumber" id="contactPhoneLabel">Phone Number:</label>
-                                    <div class="bg-white rounded border p-1" id="contactPhone"></div>
-                                </div>
-                                <div class="col-2">
-                                    <label for="ptype" id="contactPhoneTypeLabel">Type:</label>
-                                    <div class="bg-white rounded border p-1" id="contactPhoneType"></div>
-                                </div>
-                                <div class="col">
-                                    <label for="email" id="contactEmailLabel">E-Mail:</label>
-                                    <div class="bg-white rounded border p-1" id="contactEmail">/div>
+                                    onmouseout="this.src='./images/trash.png';" onclick="deleteContact();">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center fs-5 w-100">
+                                <div class="d-flex flex-row justify-content-around w-100 m-3">
+                                    <div class="d-flex flex-row">
+                                        <label for="phoneNumber" id="contactPhoneLabel" class="mx-3">Phone
+                                            Number:</label>
+                                        <div class="bg-white rounded border p-1" id="contactPhone"></div>
                                     </div>
-                                    <div class="col-2">
-                                        <label for="etype" id="contactEmailTypeLabel">Type:</label>
+                                    <div class="d-flex flex-row">
+                                        <label for="ptype" id="contactPhoneTypeLabel" class="mx-3">Type:</label>
+                                        <div class="bg-white rounded border p-1" id="contactPhoneType"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-around w-100 m-3">
+                                    <div class="d-flex flex-row">
+                                        <label for="email" id="contactEmailLabel" class="mx-3">E-Mail:</label>
+                                        <div class="bg-white rounded border p-1" id="contactEmail"></div>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <label for="etype" id="contactEmailTypeLabel" class="mx-3">Type:</label>
                                         <div class="bg-white rounded border p-1" id="contactEmailType"></div>
                                     </div>
                                 </div>
 
-                                <div class="row fs-5 my-5">
-                                    <div class="col">
-                                        <label for="address" id="contactAddressLabel">Address:</label>
+                                <div class="d-flex flex-row justify-content-around w-100 m-3">
+                                    <div class="d-flex flex-row">
+                                        <label for="address" id="contactAddressLabel" class="mx-3">Address:</label>
                                         <div class="bg-white rounded border p-1" id="contactAddress"></div>
                                     </div>
-                                    <div class="col-3">
-                                        <label for="ltype" id="contactAddressTypeLabel">Type:</label>
+                                    <div class="d-flex flex-row">
+                                        <label for="ltype" id="contactAddressTypeLabel" class="mx-3">Type:</label>
                                         <div class="bg-white rounded border p-1" id="contactAddressType"></div>
                                     </div>
                                 </div>
 
-                                <div class="col mt-5">
-                                    <button type="submit" class="btn btn-outline-dark w-100" type="submit">Edit</button>
+                                <div class="col mt-5 w-100">
+                                    <button type="button" class="btn btn-outline-dark w-100">Edit</button>
                                 </div>
 
                             </div>

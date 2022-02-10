@@ -38,7 +38,6 @@ function handleLogin() {
 						"User/Password combination incorrect";
 					loginInput.classList.add("is-invalid");
 					passInput.classList.add("is-invalid");
-					event.preventDefault();
 					return;
 				}
 
@@ -110,7 +109,6 @@ function addContact() {
 
 	if (firstName === "" && lastName === "") {
 		contactForm.classList.add("was-validated");
-		event.preventDefault();
 		return;
 	}
 	
@@ -138,6 +136,7 @@ function addContact() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContactResult").innerHTML = "Success";
+				location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -167,7 +166,6 @@ function handleRegister() {
 
 	const result = validateForm(form, validSymbols, firstName, lastName, login, password, confirmPassword);
 	if (result == 1) {
-		event.preventDefault();
 		return;
 	}
 
@@ -274,7 +272,7 @@ function handleLogout() {
 function getContacts(field, look) {
 	const jsonPayload = JSON.stringify({
 		login: username,
-		field: 0,
+		field: field,
 		look: "%" + look + "%",
 	});
 
@@ -333,7 +331,7 @@ function getContact(contact) {
 
 				document.getElementById("contactName").innerHTML = jsonObject.cname;
 
-				if (jsonObject.number === undefined || jsonObject.number === null || jsonObject.number === "") {
+				if (jsonObject.number === undefined || jsonObject.number === null || jsonObject.number.trim() === "") {
 					document.getElementById("contactPhone").classList.add("d-none");
 					document.getElementById("contactPhoneLabel").classList.add("d-none");
 				} else {
@@ -342,7 +340,7 @@ function getContact(contact) {
 					document.getElementById("contactPhoneLabel").classList.remove("d-none");					
 				}
 
-				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype === "") {
+				if (jsonObject.ptype === undefined || jsonObject.ptype === null || jsonObject.ptype.trim() === "") {
 					document.getElementById("contactPhoneType").classList.add("d-none");
 					document.getElementById("contactPhoneTypeLabel").classList.add("d-none");
 				} else {
@@ -351,40 +349,40 @@ function getContact(contact) {
 					document.getElementById("contactPhoneTypeLabel").classList.remove("d-none");					
 				}
 
-				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress === "") {
-					document.getElementById("contactEmail").classList.add("d-none");
-					document.getElementById("contactEmailLabel").classList.add("d-none");
+				if (jsonObject.eaddress === undefined || jsonObject.eaddress === null || jsonObject.eaddress.trim() === "") {
+					document.getElementById("contactEmail").classList.add("invisible");
+					document.getElementById("contactEmailLabel").classList.add("invisible");
 				} else {
 					document.getElementById("contactEmail").innerHTML = jsonObject.eaddress;
-					document.getElementById("contactEmail").classList.remove("d-none");
-					document.getElementById("contactEmailLabel").classList.remove("d-none");					
+					document.getElementById("contactEmail").classList.remove("invisible");
+					document.getElementById("contactEmailLabel").classList.remove("invisible");					
 				}
 
-				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype === "") {
-					document.getElementById("contactEmailType").classList.add("d-none");
-					document.getElementById("contactEmailTypeLabel").classList.add("d-none");
+				if (jsonObject.etype === undefined || jsonObject.etype === null || jsonObject.etype.trim() === "") {
+					document.getElementById("contactEmailType").classList.add("invisible");
+					document.getElementById("contactEmailTypeLabel").classList.add("invisible");
 				} else {
 					document.getElementById("contactEmailType").innerHTML = jsonObject.etype;
-					document.getElementById("contactEmailType").classList.remove("d-none");
-					document.getElementById("contactEmailTypeLabel").classList.remove("d-none");					
+					document.getElementById("contactEmailType").classList.remove("invisible");
+					document.getElementById("contactEmailTypeLabel").classList.remove("invisible");					
 				}
 
-				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress === "") {
-					document.getElementById("contactAddress").classList.add("d-none");
-					document.getElementById("contactAddressLabel").classList.add("d-none");
+				if (jsonObject.laddress === undefined || jsonObject.laddress === null || jsonObject.laddress.trim() === "") {
+					document.getElementById("contactAddress").classList.add("invisible");
+					document.getElementById("contactAddressLabel").classList.add("invisible");
 				} else {
 					document.getElementById("contactAddress").innerHTML = jsonObject.laddress;
-					document.getElementById("contactAddress").classList.remove("d-none");
-					document.getElementById("contactAddressLabel").classList.remove("d-none");					
+					document.getElementById("contactAddress").classList.remove("invisible");
+					document.getElementById("contactAddressLabel").classList.remove("invisible");					
 				}
 
-				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype === "") {
-					document.getElementById("contactAddressType").classList.add("d-none");
-					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
+				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype.trim() === "") {
+					document.getElementById("contactAddressType").classList.add("invisible");
+					document.getElementById("contactAddressTypeLabel").classList.add("invisible");
 				} else {
-					document.getElementById("contactEmailType").innerHTML = jsonObject.ltype;
-					document.getElementById("contactAddressType").classList.remove("d-none");
-					document.getElementById("contactAddressTypeLabel").classList.remove("d-none");					
+					document.getElementById("contactAddressType").innerHTML = jsonObject.ltype;
+					document.getElementById("contactAddressType").classList.remove("invisible");
+					document.getElementById("contactAddressTypeLabel").classList.remove("invisible");					
 				}
 			}
 		};
@@ -396,38 +394,40 @@ function getContact(contact) {
 
 function deleteContact() {
 
-	// Should probably make it so that it asks if the user is sure before deletion,
-	// just thought we should try and make the actual function work first
+	if (window.confirm("Are you sure you want to delete this contact?")) {
+		const name = document.getElementById("contactName").innerHTML.trim();
 
-	const name = document.getElementById("cname").value.trim();
+		const jsonPayload = JSON.stringify({
+			field: 0,
+			cname: name,
+			login: username,
+		});
 
-	const jsonPayload = JSON.stringify({
-		field: 0,
-		cname: name,
-		login: username,
-	});
+		const url = urlBase + "/Delete." + extension;
 
-	const url = urlBase + "/Delete." + extension;
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try {
+			xhr.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					let jsonObject = JSON.parse(xhr.responseText);
+					error = jsonObject.error;
 
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				let jsonObject = JSON.parse(xhr.responseText);
-				error = jsonObject.error;
-
-				if (error != "") {
-					document.getElementById("deleteResult").innerHTML =
-						"An error has occured. Try again.";
-					return;
+					if (error != "") {
+						document.getElementById("deleteResult").innerHTML =
+							"An error has occured. Try again.";
+						return;
+					}
 				}
-			}
-		};
-		xhr.send(jsonPayload);
-	} catch (err) {
-		document.getElementById("deleteResult").innerHTML = err.message;
+
+				document.getElementById("contactInfo").classList.add("d-none");
+				location.reload();
+			};
+			xhr.send(jsonPayload);
+		} catch (err) {
+			document.getElementById("deleteResult").innerHTML = err.message;
+		}
 	}
 }
