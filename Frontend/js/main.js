@@ -378,7 +378,6 @@ function getContact(contact) {
 					document.getElementById("contactAddressLabel").classList.remove("d-none");					
 				}
 
-				console.log({value: jsonObject.ltype.trim(), type: typeof jsonObject.ltype})
 				if (jsonObject.ltype === undefined || jsonObject.ltype === null || jsonObject.ltype.trim() === "") {
 					document.getElementById("contactAddressType").classList.add("d-none");
 					document.getElementById("contactAddressTypeLabel").classList.add("d-none");
