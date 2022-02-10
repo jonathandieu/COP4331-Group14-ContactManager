@@ -425,6 +425,9 @@ function deleteContact() {
 					return;
 				}
 			}
+
+			document.getElementById("contactInfo").classList.add("d-none");
+			location.reload();
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
